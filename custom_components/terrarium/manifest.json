@@ -1,0 +1,12 @@
+{
+  "domain": "terrarium",
+  "name": "Terrarium",
+  "version": "0.1.0",
+  "documentation": "https://github.com/gersseba/ha_terrarium",
+  "issue_tracker": "https://github.com/gersseba/ha_terrarium/issues",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": ["@gersseba"],
+  "config_flow": true,
+  "iot_class": "local_polling"
+}

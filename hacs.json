@@ -1,0 +1,5 @@
+{
+  "name": "Terrarium",
+  "description": "Home Assistant integration for terrarium monitoring and control.",
+  "render_readme": true
+}

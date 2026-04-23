@@ -1,0 +1,25 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Terrarium",
+        "description": "Configure your terrarium integration.",
+        "data": {
+          "name": "Name"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This terrarium is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Terrarium Options",
+        "description": "Update your terrarium settings.",
+        "data": {}
+      }
+    }
+  }
+}
