@@ -1,0 +1,136 @@
+########################################
+# Terrarium – Heizung
+########################################
+
+terrarium_heizung_morgens:
+  name: Terrarium Heizung Morgens
+  has_date: false
+  has_time: true
+  initial: "08:00"
+
+terrarium_heizung_mittags:
+  name: Terrarium Heizung Mittags
+  has_date: false
+  has_time: true
+  initial: "11:00"
+
+terrarium_heizung_abends:
+  name: Terrarium Heizung Abends
+  has_date: false
+  has_time: true
+  initial: "16:00"
+
+terrarium_heizung_nachts:
+  name: Terrarium Heizung Nachts
+  has_date: false
+  has_time: true
+  initial: "21:00"
+
+
+########################################
+# Terrarium – Lampen
+########################################
+
+terrarium_lampen_start:
+  name: Terrarium Lampen Start
+  has_date: false
+  has_time: true
+  initial: "08:00"
+
+terrarium_lampen_ende:
+  name: Terrarium Lampen Ende
+  has_date: false
+  has_time: true
+  initial: "20:00"
+
+
+########################################
+# Frühbeet Sternies – Heizung
+########################################
+
+fruehbeet_sternies_heizung_morgens:
+  name: Frühbeet Sternies Heizung Morgens
+  has_date: false
+  has_time: true
+  initial: "08:00"
+
+fruehbeet_sternies_heizung_mittags:
+  name: Frühbeet Sternies Heizung Mittags
+  has_date: false
+  has_time: true
+  initial: "11:00"
+
+fruehbeet_sternies_heizung_abends:
+  name: Frühbeet Sternies Heizung Abends
+  has_date: false
+  has_time: true
+  initial: "16:00"
+
+fruehbeet_sternies_heizung_nachts:
+  name: Frühbeet Sternies Heizung Nachts
+  has_date: false
+  has_time: true
+  initial: "21:00"
+
+
+########################################
+# Frühbeet Sternies – Lampen
+########################################
+
+fruehbeet_sternies_lampen_start:
+  name: Frühbeet Sternies Lampen Start
+  has_date: false
+  has_time: true
+  initial: "08:00"
+
+fruehbeet_sternies_lampen_ende:
+  name: Frühbeet Sternies Lampen Ende
+  has_date: false
+  has_time: true
+  initial: "20:00"
+
+
+########################################
+# Frühbeet Krümel – Heizung
+########################################
+
+fruehbeet_kruemel_heizung_morgens:
+  name: Frühbeet Krümel Heizung Morgens
+  has_date: false
+  has_time: true
+  initial: "08:00"
+
+fruehbeet_kruemel_heizung_mittags:
+  name: Frühbeet Krümel Heizung Mittags
+  has_date: false
+  has_time: true
+  initial: "11:00"
+
+fruehbeet_kruemel_heizung_abends:
+  name: Frühbeet Krümel Heizung Abends
+  has_date: false
+  has_time: true
+  initial: "16:00"
+
+fruehbeet_kruemel_heizung_nachts:
+  name: Frühbeet Krümel Heizung Nachts
+  has_date: false
+  has_time: true
+  initial: "21:00"
+
+
+########################################
+# Frühbeet Krümel – Lampen
+########################################
+
+fruehbeet_kruemel_lampen_start:
+  name: Frühbeet Krümel Lampen Start
+  has_date: false
+  has_time: true
+  initial: "08:00"
+
+fruehbeet_kruemel_lampen_ende:
+  name: Frühbeet Krümel Lampen Ende
+  has_date: false
+  has_time: true
+  initial: "20:00"

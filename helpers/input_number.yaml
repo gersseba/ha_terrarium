@@ -1,0 +1,121 @@
+########################################
+# Terrarium – Zieltemperaturen Heizung
+########################################
+
+terrarium_heizung_zieltemperatur_morgens:
+  name: Terrarium Heizung Zieltemperatur Morgens
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 24
+
+terrarium_heizung_zieltemperatur_mittags:
+  name: Terrarium Heizung Zieltemperatur Mittags
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 30
+
+terrarium_heizung_zieltemperatur_abends:
+  name: Terrarium Heizung Zieltemperatur Abends
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 24
+
+terrarium_heizung_zieltemperatur_nachts:
+  name: Terrarium Heizung Zieltemperatur Nachts
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 20
+
+
+########################################
+# Fruehbeet Sternies – Zieltemperaturen Heizung
+########################################
+
+fruehbeet_sternies_heizung_zieltemperatur_morgens:
+  name: Fruehbeet Sternies Heizung Zieltemperatur Morgens
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 24
+
+fruehbeet_sternies_heizung_zieltemperatur_mittags:
+  name: Fruehbeet Sternies Heizung Zieltemperatur Mittags
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 30
+
+fruehbeet_sternies_heizung_zieltemperatur_abends:
+  name: Fruehbeet Sternies Heizung Zieltemperatur Abends
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 24
+
+fruehbeet_sternies_heizung_zieltemperatur_nachts:
+  name: Fruehbeet Sternies Heizung Zieltemperatur Nachts
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 20
+
+
+########################################
+# Fruehbeet Kruemel – Zieltemperaturen Heizung
+########################################
+
+fruehbeet_kruemel_heizung_zieltemperatur_morgens:
+  name: Fruehbeet Kruemel Heizung Zieltemperatur Morgens
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 24
+
+fruehbeet_kruemel_heizung_zieltemperatur_mittags:
+  name: Fruehbeet Kruemel Heizung Zieltemperatur Mittags
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 30
+
+fruehbeet_kruemel_heizung_zieltemperatur_abends:
+  name: Fruehbeet Kruemel Heizung Zieltemperatur Abends
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 24
+
+fruehbeet_kruemel_heizung_zieltemperatur_nachts:
+  name: Fruehbeet Kruemel Heizung Zieltemperatur Nachts
+  min: 0
+  max: 50
+  step: 0.5
+  mode: box
+  unit_of_measurement: "°C"
+  initial: 20

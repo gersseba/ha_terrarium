@@ -1,0 +1,48 @@
+terrarium_led_modus:
+  name: Terrarium LED Modus
+  options:
+    - Auto
+    - An
+    - Aus
+
+terrarium_lampen_modus:
+  name: Terrarium Lampen Modus
+  options:
+    - Auto
+    - An
+    - Aus
+
+terrarium_heizung_modus:
+  name: Terrarium Heizung Modus
+  options:
+    - Auto
+    - An
+    - Aus
+
+fruehbeet_sternies_lampen:
+  name: Frühbeet Sternies Lampen
+  options:
+    - Auto
+    - An
+    - Aus
+
+fruehbeet_sternies_heizung:
+  name: Frühbeet Sternies Heizung
+  options:
+    - Auto
+    - An
+    - Aus
+
+fruehbeet_kruemel_lampen:
+  name: Frühbeet Krümel Lampen
+  options:
+    - Auto
+    - An
+    - Aus
+
+fruehbeet_kruemel_heizung:
+  name: Frühbeet Krümel Heizung
+  options:
+    - Auto
+    - An
+    - Aus
