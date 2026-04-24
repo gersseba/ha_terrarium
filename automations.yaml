@@ -34,12 +34,16 @@
 
 - id: fruehbeet_kruemel_heizung_auto_regelung
   alias: Fruehbeet Kruemel Heizung Auto Regelung
-  description: Heizung im Auto-Modus mit Hysterese um Zieltemperatur steuern.
+  description: Im Auto-Modus alle als Heizung zugewiesenen Steckdosen per Hysterese steuern.
   trigger:
     - platform: homeassistant
       event: start
     - platform: time_pattern
       minutes: "/1"
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_kruemel_steckdose_links_rolle
+        - input_select.fruehbeet_kruemel_steckdose_rechts_rolle
   condition:
     - condition: state
       entity_id: input_select.fruehbeet_kruemel_heizung
@@ -54,26 +58,60 @@
             - condition: template
               value_template: "{{ current_temp <= (target_temp - hysteresis) }}"
           sequence:
-            - action: switch.turn_on
-              target:
-                device_id: 3ea6cd86c82538fda1eed9c8fd683479
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 3ea6cd86c82538fda1eed9c8fd683479
         - conditions:
             - condition: template
               value_template: "{{ current_temp >= (target_temp + hysteresis) }}"
           sequence:
-            - action: switch.turn_off
-              target:
-                device_id: 3ea6cd86c82538fda1eed9c8fd683479
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_off
+                      target:
+                        device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_off
+                      target:
+                        device_id: 3ea6cd86c82538fda1eed9c8fd683479
   mode: single
 
 - id: fruehbeet_sternies_heizung_auto_regelung
   alias: Fruehbeet Sternies Heizung Auto Regelung
-  description: Beide Heizungssteckdosen im Auto-Modus mit Hysterese steuern.
+  description: Im Auto-Modus alle als Heizung zugewiesenen Steckdosen per Hysterese steuern.
   trigger:
     - platform: homeassistant
       event: start
     - platform: time_pattern
       minutes: "/1"
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_sternies_steckdose_links_rolle
+        - input_select.fruehbeet_sternies_steckdose_rechts_rolle
   condition:
     - condition: state
       entity_id: input_select.fruehbeet_sternies_heizung
@@ -88,20 +126,46 @@
             - condition: template
               value_template: "{{ current_temp <= (target_temp - hysteresis) }}"
           sequence:
-            - action: switch.turn_on
-              target:
-                device_id:
-                  - 743afcb166f842ac755892a6682ded5a
-                  - 96ff19fd86ae55844045f95f401ba895
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 743afcb166f842ac755892a6682ded5a
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 96ff19fd86ae55844045f95f401ba895
         - conditions:
             - condition: template
               value_template: "{{ current_temp >= (target_temp + hysteresis) }}"
           sequence:
-            - action: switch.turn_off
-              target:
-                device_id:
-                  - 743afcb166f842ac755892a6682ded5a
-                  - 96ff19fd86ae55844045f95f401ba895
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_off
+                      target:
+                        device_id: 743afcb166f842ac755892a6682ded5a
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_off
+                      target:
+                        device_id: 96ff19fd86ae55844045f95f401ba895
   mode: single
 
 - id: terrarium_lampen_auto_zeiten
@@ -139,12 +203,16 @@
 
 - id: fruehbeet_kruemel_lampen_auto_zeiten
   alias: Fruehbeet Kruemel Lampen Auto Zeiten
-  description: Lampen nach Start-/Endzeit im Auto-Modus steuern.
+  description: Im Auto-Modus alle als Lampen zugewiesenen Steckdosen nach Zeit steuern.
   trigger:
     - platform: homeassistant
       event: start
     - platform: time_pattern
       minutes: "/1"
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_kruemel_steckdose_links_rolle
+        - input_select.fruehbeet_kruemel_steckdose_rechts_rolle
   condition:
     - condition: state
       entity_id: input_select.fruehbeet_kruemel_lampen
@@ -157,13 +225,106 @@
                 {{ now() >= today_at(states('input_datetime.fruehbeet_kruemel_lampen_start'))
                    and now() < today_at(states('input_datetime.fruehbeet_kruemel_lampen_ende')) }}
           sequence:
-            - action: switch.turn_on
-              target:
-                device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 3ea6cd86c82538fda1eed9c8fd683479
       default:
-        - action: switch.turn_off
-          target:
-            device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 3ea6cd86c82538fda1eed9c8fd683479
+  mode: single
+
+- id: fruehbeet_sternies_lampen_auto_zeiten
+  alias: Fruehbeet Sternies Lampen Auto Zeiten
+  description: Im Auto-Modus alle als Lampen zugewiesenen Steckdosen nach Zeit steuern.
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: time_pattern
+      minutes: "/1"
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_sternies_steckdose_links_rolle
+        - input_select.fruehbeet_sternies_steckdose_rechts_rolle
+  condition:
+    - condition: state
+      entity_id: input_select.fruehbeet_sternies_lampen
+      state: Auto
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: >
+                {{ now() >= today_at(states('input_datetime.fruehbeet_sternies_lampen_start'))
+                   and now() < today_at(states('input_datetime.fruehbeet_sternies_lampen_ende')) }}
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 743afcb166f842ac755892a6682ded5a
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 96ff19fd86ae55844045f95f401ba895
+      default:
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 743afcb166f842ac755892a6682ded5a
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 96ff19fd86ae55844045f95f401ba895
   mode: single
 
 - id: terrarium_heizung_modus_override
@@ -195,12 +356,16 @@
 
 - id: fruehbeet_kruemel_heizung_modus_override
   alias: Fruehbeet Kruemel Heizung Modus An Aus
-  description: Heizung sofort auf An oder Aus setzen, wenn Modus gewechselt wird.
+  description: Als Heizung zugewiesene Steckdosen sofort auf An oder Aus setzen.
   trigger:
     - platform: homeassistant
       event: start
     - platform: state
       entity_id: input_select.fruehbeet_kruemel_heizung
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_kruemel_steckdose_links_rolle
+        - input_select.fruehbeet_kruemel_steckdose_rechts_rolle
   condition:
     - condition: template
       value_template: "{{ states('input_select.fruehbeet_kruemel_heizung') in ['An', 'Aus'] }}"
@@ -211,23 +376,57 @@
               entity_id: input_select.fruehbeet_kruemel_heizung
               state: An
           sequence:
-            - action: switch.turn_on
-              target:
-                device_id: 3ea6cd86c82538fda1eed9c8fd683479
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 3ea6cd86c82538fda1eed9c8fd683479
       default:
-        - action: switch.turn_off
-          target:
-            device_id: 3ea6cd86c82538fda1eed9c8fd683479
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                  state: Heizung
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                  state: Heizung
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 3ea6cd86c82538fda1eed9c8fd683479
   mode: single
 
 - id: fruehbeet_sternies_heizung_modus_override
   alias: Fruehbeet Sternies Heizung Modus An Aus
-  description: Beide Heizungssteckdosen sofort auf An oder Aus setzen.
+  description: Als Heizung zugewiesene Steckdosen sofort auf An oder Aus setzen.
   trigger:
     - platform: homeassistant
       event: start
     - platform: state
       entity_id: input_select.fruehbeet_sternies_heizung
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_sternies_steckdose_links_rolle
+        - input_select.fruehbeet_sternies_steckdose_rechts_rolle
   condition:
     - condition: template
       value_template: "{{ states('input_select.fruehbeet_sternies_heizung') in ['An', 'Aus'] }}"
@@ -238,17 +437,43 @@
               entity_id: input_select.fruehbeet_sternies_heizung
               state: An
           sequence:
-            - action: switch.turn_on
-              target:
-                device_id:
-                  - 743afcb166f842ac755892a6682ded5a
-                  - 96ff19fd86ae55844045f95f401ba895
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 743afcb166f842ac755892a6682ded5a
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                      state: Heizung
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 96ff19fd86ae55844045f95f401ba895
       default:
-        - action: switch.turn_off
-          target:
-            device_id:
-              - 743afcb166f842ac755892a6682ded5a
-              - 96ff19fd86ae55844045f95f401ba895
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                  state: Heizung
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 743afcb166f842ac755892a6682ded5a
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                  state: Heizung
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 96ff19fd86ae55844045f95f401ba895
   mode: single
 
 - id: terrarium_lampen_modus_override
@@ -284,12 +509,16 @@
 
 - id: fruehbeet_kruemel_lampen_modus_override
   alias: Fruehbeet Kruemel Lampen Modus An Aus
-  description: Lampen sofort auf An oder Aus setzen, wenn Modus gewechselt wird.
+  description: Als Lampen zugewiesene Steckdosen sofort auf An oder Aus setzen.
   trigger:
     - platform: homeassistant
       event: start
     - platform: state
       entity_id: input_select.fruehbeet_kruemel_lampen
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_kruemel_steckdose_links_rolle
+        - input_select.fruehbeet_kruemel_steckdose_rechts_rolle
   condition:
     - condition: template
       value_template: "{{ states('input_select.fruehbeet_kruemel_lampen') in ['An', 'Aus'] }}"
@@ -300,11 +529,102 @@
               entity_id: input_select.fruehbeet_kruemel_lampen
               state: An
           sequence:
-            - action: switch.turn_on
-              target:
-                device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 3ea6cd86c82538fda1eed9c8fd683479
       default:
-        - action: switch.turn_off
-          target:
-            device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_kruemel_steckdose_links_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_kruemel_steckdose_rechts_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 3ea6cd86c82538fda1eed9c8fd683479
+  mode: single
+
+- id: fruehbeet_sternies_lampen_modus_override
+  alias: Fruehbeet Sternies Lampen Modus An Aus
+  description: Als Lampen zugewiesene Steckdosen sofort auf An oder Aus setzen.
+  trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: input_select.fruehbeet_sternies_lampen
+    - platform: state
+      entity_id:
+        - input_select.fruehbeet_sternies_steckdose_links_rolle
+        - input_select.fruehbeet_sternies_steckdose_rechts_rolle
+  condition:
+    - condition: template
+      value_template: "{{ states('input_select.fruehbeet_sternies_lampen') in ['An', 'Aus'] }}"
+  action:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_select.fruehbeet_sternies_lampen
+              state: An
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 743afcb166f842ac755892a6682ded5a
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                      state: Lampen
+                  sequence:
+                    - action: switch.turn_on
+                      target:
+                        device_id: 96ff19fd86ae55844045f95f401ba895
+      default:
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_sternies_steckdose_links_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 743afcb166f842ac755892a6682ded5a
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_select.fruehbeet_sternies_steckdose_rechts_rolle
+                  state: Lampen
+              sequence:
+                - action: switch.turn_off
+                  target:
+                    device_id: 96ff19fd86ae55844045f95f401ba895
   mode: single

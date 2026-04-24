@@ -82,6 +82,24 @@ views:
             name: Licht Naechste Aenderung
             vertical: false
             features_position: bottom
+          - type: heading
+            heading: Steckdosen Status
+            heading_style: subtitle
+          - type: tile
+            entity: binary_sensor.terrarium_lampen_vorne_aktiv
+            name: Lampen vorne
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: binary_sensor.terrarium_lampen_hinten_aktiv
+            name: Lampen hinten
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: binary_sensor.terrarium_heizung_aktiv
+            name: Heizung
+            vertical: false
+            features_position: bottom
 
   - type: sections
     max_columns: 4
@@ -142,6 +160,19 @@ views:
             name: Licht Naechste Aenderung
             vertical: false
             features_position: bottom
+          - type: heading
+            heading: Steckdosen Status
+            heading_style: subtitle
+          - type: tile
+            entity: binary_sensor.fruehbeet_kruemel_lampen_aktiv
+            name: Steckdose links
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: binary_sensor.fruehbeet_kruemel_heizung_aktiv
+            name: Steckdose rechts
+            vertical: false
+            features_position: bottom
 
   - type: sections
     max_columns: 4
@@ -200,6 +231,19 @@ views:
           - type: tile
             entity: sensor.fruehbeet_sternies_beleuchtung_naechste_aenderung
             name: Licht Naechste Aenderung
+            vertical: false
+            features_position: bottom
+          - type: heading
+            heading: Steckdosen Status
+            heading_style: subtitle
+          - type: tile
+            entity: binary_sensor.fruehbeet_sternies_heizung_links_aktiv
+            name: Steckdose links
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: binary_sensor.fruehbeet_sternies_heizung_rechts_aktiv
+            name: Steckdose rechts
             vertical: false
             features_position: bottom
 

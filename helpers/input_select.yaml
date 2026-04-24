@@ -46,3 +46,31 @@ fruehbeet_kruemel_heizung:
     - Auto
     - An
     - Aus
+
+fruehbeet_kruemel_steckdose_links_rolle:
+  name: Frühbeet Krümel Steckdose links Rolle
+  initial: Lampen
+  options:
+    - Heizung
+    - Lampen
+
+fruehbeet_kruemel_steckdose_rechts_rolle:
+  name: Frühbeet Krümel Steckdose rechts Rolle
+  initial: Heizung
+  options:
+    - Heizung
+    - Lampen
+
+fruehbeet_sternies_steckdose_links_rolle:
+  name: Frühbeet Sternies Steckdose links Rolle
+  initial: Heizung
+  options:
+    - Heizung
+    - Lampen
+
+fruehbeet_sternies_steckdose_rechts_rolle:
+  name: Frühbeet Sternies Steckdose rechts Rolle
+  initial: Heizung
+  options:
+    - Heizung
+    - Lampen

@@ -324,3 +324,53 @@
         {% else %}
           {{ '%02d:%02d' | format(start[0] | int, start[1] | int) }}
         {% endif %}
+
+- binary_sensor:
+    - name: Terrarium Lampen Vorne Aktiv
+      unique_id: terrarium_lampen_vorne_aktiv
+      device_class: power
+      state: >
+        {% set switches = device_entities('a41c61defbb6da53874646bd2677c75d') | select('match', '^switch\\.') | list %}
+        {{ switches | count > 0 and is_state(switches[0], 'on') }}
+
+    - name: Terrarium Lampen Hinten Aktiv
+      unique_id: terrarium_lampen_hinten_aktiv
+      device_class: power
+      state: >
+        {% set switches = device_entities('24cc22083ab3a8b64494ad3f1dd7e3b9') | select('match', '^switch\\.') | list %}
+        {{ switches | count > 0 and is_state(switches[0], 'on') }}
+
+    - name: Terrarium Heizung Aktiv
+      unique_id: terrarium_heizung_aktiv
+      device_class: heat
+      state: >
+        {% set switches = device_entities('7f7f621198bb172387384b3554263c74') | select('match', '^switch\\.') | list %}
+        {{ switches | count > 0 and is_state(switches[0], 'on') }}
+
+    - name: Fruehbeet Kruemel Lampen Aktiv
+      unique_id: fruehbeet_kruemel_lampen_aktiv
+      device_class: power
+      state: >
+        {% set switches = device_entities('88dde9fbd2e4b8ef4b0ea7bfd470ff55') | select('match', '^switch\\.') | list %}
+        {{ switches | count > 0 and is_state(switches[0], 'on') }}
+
+    - name: Fruehbeet Kruemel Heizung Aktiv
+      unique_id: fruehbeet_kruemel_heizung_aktiv
+      device_class: heat
+      state: >
+        {% set switches = device_entities('3ea6cd86c82538fda1eed9c8fd683479') | select('match', '^switch\\.') | list %}
+        {{ switches | count > 0 and is_state(switches[0], 'on') }}
+
+    - name: Fruehbeet Sternies Heizung Links Aktiv
+      unique_id: fruehbeet_sternies_heizung_links_aktiv
+      device_class: heat
+      state: >
+        {% set switches = device_entities('743afcb166f842ac755892a6682ded5a') | select('match', '^switch\\.') | list %}
+        {{ switches | count > 0 and is_state(switches[0], 'on') }}
+
+    - name: Fruehbeet Sternies Heizung Rechts Aktiv
+      unique_id: fruehbeet_sternies_heizung_rechts_aktiv
+      device_class: heat
+      state: >
+        {% set switches = device_entities('96ff19fd86ae55844045f95f401ba895') | select('match', '^switch\\.') | list %}
+        {{ switches | count > 0 and is_state(switches[0], 'on') }}
