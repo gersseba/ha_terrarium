@@ -1,0 +1,152 @@
+views:
+  - type: sections
+    title: Leistung
+    path: leistung
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Terrarium
+            heading_style: title
+          - graph: line
+            type: sensor
+            entity: sensor.terrarium_lampen_vorne_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+          - graph: line
+            type: sensor
+            entity: sensor.terrarium_lampen_hinten_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+          - graph: line
+            type: sensor
+            entity: sensor.terrarium_led_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+          - graph: line
+            type: sensor
+            entity: sensor.terrarium_heizung_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+        column_span: 3
+      - type: grid
+        cards:
+          - type: heading
+            heading: Fruehbeet Kruemel
+            heading_style: title
+          - graph: line
+            type: sensor
+            entity: sensor.steckdose_krumel_links_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+          - graph: line
+            type: sensor
+            entity: sensor.steckdose_krumel_rechts_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+        column_span: 3
+      - type: grid
+        cards:
+          - type: heading
+            heading: Fruehbeet Sternies
+            heading_style: title
+          - graph: line
+            type: sensor
+            entity: sensor.sternies_steckdose_links_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+          - graph: line
+            type: sensor
+            entity: sensor.steckdose_sternies_rechts_leistung
+            detail: 1
+            grid_options:
+              columns: 18
+              rows: 2
+        column_span: 3
+
+  - type: sections
+    title: Energie
+    path: energie
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Aggregiert (Wh)
+            heading_style: title
+          - type: tile
+            entity: sensor.gesamtleistung_terrarium_und_fruehbeete
+            name: Gesamtleistung Jetzt
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.gesamtenergie_letzte_woche
+            name: Letzte Woche
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.gesamtenergie_letzter_monat
+            name: Letzter Monat
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.gesamtenergie_jahr_bis_heute
+            name: Jahr bis heute
+            vertical: false
+            features_position: bottom
+
+  - type: sections
+    title: Kosten
+    path: kosten
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Strompreis
+            heading_style: title
+          - type: tile
+            entity: sensor.strompreis_aktuell_pro_wh
+            name: Preis Pro Wh
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.strompreis_pro_wh
+            name: Preis Einstellen
+            vertical: false
+            features_position: bottom
+      - type: grid
+        cards:
+          - type: heading
+            heading: Aggregierte Kosten
+            heading_style: title
+          - type: tile
+            entity: sensor.stromkosten_letzte_woche
+            name: Letzte Woche
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.stromkosten_letzter_monat
+            name: Letzter Monat
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.stromkosten_jahr_bis_heute
+            name: Jahr bis heute
+            vertical: false
+            features_position: bottom

@@ -1,0 +1,248 @@
+views:
+  - type: sections
+    title: Terrarium
+    path: terrarium
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Modus
+            heading_style: title
+          - type: tile
+            entity: input_select.terrarium_lampen_modus
+            name: Lampen
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_select.terrarium_heizung_modus
+            name: Heizung
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_select.terrarium_led_modus
+            name: LEDs
+            vertical: false
+            features_position: bottom
+      - type: grid
+        cards:
+          - type: heading
+            heading: Beleuchtung
+            heading_style: title
+          - type: tile
+            entity: input_datetime.terrarium_lampen_start
+            name: Licht An
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.terrarium_lampen_ende
+            name: Licht Aus
+            vertical: false
+            features_position: bottom
+      - type: grid
+        cards:
+          - type: heading
+            heading: Heizung
+            heading_style: title
+          - type: tile
+            entity: input_datetime.terrarium_heizung_morgens
+            name: Heiz Morgens
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.terrarium_heizung_mittags
+            name: Heiz Mittags
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.terrarium_heizung_abends
+            name: Heiz Abends
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.terrarium_heizung_nachts
+            name: Heiz Nachts
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.terrarium_heizung_zieltemperatur_morgens
+            name: Ziel Temp Morgens
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.terrarium_heizung_zieltemperatur_mittags
+            name: Ziel Temp Mittags
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.terrarium_heizung_zieltemperatur_abends
+            name: Ziel Temp Abends
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.terrarium_heizung_zieltemperatur_nachts
+            name: Ziel Temp Nachts
+            vertical: false
+            features_position: bottom
+
+  - type: sections
+    title: Fruehbeet Kruemel
+    path: fruehbeet-kruemel
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Modus
+            heading_style: title
+          - type: tile
+            entity: input_select.fruehbeet_kruemel_lampen
+            name: Lampen
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_select.fruehbeet_kruemel_heizung
+            name: Heizung
+            vertical: false
+            features_position: bottom
+      - type: grid
+        cards:
+          - type: heading
+            heading: Beleuchtung
+            heading_style: title
+          - type: tile
+            entity: input_datetime.fruehbeet_kruemel_lampen_start
+            name: Licht An
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_kruemel_lampen_ende
+            name: Licht Aus
+            vertical: false
+            features_position: bottom
+      - type: grid
+        cards:
+          - type: heading
+            heading: Heizung
+            heading_style: title
+          - type: tile
+            entity: input_datetime.fruehbeet_kruemel_heizung_morgens
+            name: Heiz Morgens
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_kruemel_heizung_mittags
+            name: Heiz Mittags
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_kruemel_heizung_abends
+            name: Heiz Abends
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_kruemel_heizung_nachts
+            name: Heiz Nachts
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_kruemel_heizung_zieltemperatur_morgens
+            name: Ziel Temp Morgens
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_kruemel_heizung_zieltemperatur_mittags
+            name: Ziel Temp Mittags
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_kruemel_heizung_zieltemperatur_abends
+            name: Ziel Temp Abends
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_kruemel_heizung_zieltemperatur_nachts
+            name: Ziel Temp Nachts
+            vertical: false
+            features_position: bottom
+
+  - type: sections
+    title: Fruehbeet Sternies
+    path: fruehbeet-sternies
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Modus
+            heading_style: title
+          - type: tile
+            entity: input_select.fruehbeet_sternies_lampen
+            name: Lampen
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_select.fruehbeet_sternies_heizung
+            name: Heizung
+            vertical: false
+            features_position: bottom
+      - type: grid
+        cards:
+          - type: heading
+            heading: Beleuchtung
+            heading_style: title
+          - type: tile
+            entity: input_datetime.fruehbeet_sternies_lampen_start
+            name: Licht An
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_sternies_lampen_ende
+            name: Licht Aus
+            vertical: false
+            features_position: bottom
+      - type: grid
+        cards:
+          - type: heading
+            heading: Heizung
+            heading_style: title
+          - type: tile
+            entity: input_datetime.fruehbeet_sternies_heizung_morgens
+            name: Heiz Morgens
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_sternies_heizung_mittags
+            name: Heiz Mittags
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_sternies_heizung_abends
+            name: Heiz Abends
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_datetime.fruehbeet_sternies_heizung_nachts
+            name: Heiz Nachts
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_sternies_heizung_zieltemperatur_morgens
+            name: Ziel Temp Morgens
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_sternies_heizung_zieltemperatur_mittags
+            name: Ziel Temp Mittags
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_sternies_heizung_zieltemperatur_abends
+            name: Ziel Temp Abends
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_sternies_heizung_zieltemperatur_nachts
+            name: Ziel Temp Nachts
+            vertical: false
+            features_position: bottom

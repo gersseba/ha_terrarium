@@ -119,3 +119,17 @@ fruehbeet_kruemel_heizung_zieltemperatur_nachts:
   mode: box
   unit_of_measurement: "°C"
   initial: 20
+
+
+########################################
+# Meta – Strompreis
+########################################
+
+strompreis_pro_wh:
+  name: Strompreis Pro Wh
+  min: 0
+  max: 1
+  step: 0.01
+  mode: box
+  unit_of_measurement: "EUR/Wh"
+  initial: 0.30
