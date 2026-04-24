@@ -41,7 +41,7 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Fruehbeet Kruemel
+            heading: Frühbeet Krümel
             heading_style: title
           - graph: line
             type: sensor
@@ -61,7 +61,7 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Fruehbeet Sternies
+            heading: Frühbeet Sternies
             heading_style: title
           - graph: line
             type: sensor

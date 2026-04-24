@@ -1,0 +1,28 @@
+views:
+  - type: sections
+    title: Geräte
+    path: geraete
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: gauge
+            entity: sensor.thermometer_vorne_batterie
+            name:
+              - type: area
+              - type: device
+          - type: gauge
+            entity: sensor.thermometer_vorne_batterie
+            name:
+              - type: area
+              - type: device
+          - type: gauge
+            entity: sensor.fruhbeet_krumel_batterie
+            name:
+              - type: area
+              - type: device
+          - type: gauge
+            entity: sensor.fruhbeet_sternies_batterie
+            name:
+              - type: area
+              - type: device

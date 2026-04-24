@@ -1,0 +1,6 @@
+- platform: integration
+  source: sensor.gesamtleistung_terrarium_und_fruehbeete
+  name: Gesamtenergie Gesamt
+  unit_time: h
+  method: trapezoidal
+  round: 3

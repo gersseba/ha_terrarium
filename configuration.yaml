@@ -10,7 +10,7 @@ lovelace:
   dashboards:
     kroeten-dashboard:
       mode: yaml
-      title: Kroeten
+      title: Kröten
       icon: mdi:turtle
       show_in_sidebar: true
       filename: lovelace/views/kroeten.yaml
@@ -22,80 +22,20 @@ lovelace:
       filename: lovelace/views/steuerung.yaml
     meta-dashboard:
       mode: yaml
-      title: Meta
+      title: Strom
       icon: mdi:chart-box-outline
       show_in_sidebar: true
-      filename: lovelace/views/meta.yaml
+      filename: lovelace/views/strom.yaml
+    geraete-dashboard:
+      mode: yaml
+      title: Geräte
+      icon: mdi:battery
+      show_in_sidebar: true
+      filename: lovelace/views/geraete.yaml
 
-template:
-  - sensor:
-      - name: Gesamtleistung Terrarium und Fruehbeete
-        unique_id: gesamtleistung_terrarium_fruehbeete
-        unit_of_measurement: "W"
-        device_class: power
-        state_class: measurement
-        state: >
-          {{ (
-            states('sensor.terrarium_lampen_vorne_leistung') | float(0) +
-            states('sensor.terrarium_lampen_hinten_leistung') | float(0) +
-            states('sensor.terrarium_led_leistung') | float(0) +
-            states('sensor.terrarium_heizung_leistung') | float(0) +
-            states('sensor.steckdose_krumel_links_leistung') | float(0) +
-            states('sensor.steckdose_krumel_rechts_leistung') | float(0) +
-            states('sensor.sternies_steckdose_links_leistung') | float(0) +
-            states('sensor.steckdose_sternies_rechts_leistung') | float(0)
-          ) | round(2) }}
-
-      - name: Strompreis Aktuell Pro Wh
-        unique_id: strompreis_aktuell_pro_wh
-        unit_of_measurement: "EUR/Wh"
-        state: "{{ states('input_number.strompreis_pro_wh') | float(0) | round(5) }}"
-
-      - name: Stromkosten Letzte Woche
-        unique_id: stromkosten_letzte_woche
-        unit_of_measurement: "EUR"
-        state: >
-          {{ (
-            states('sensor.gesamtenergie_letzte_woche') | float(0) *
-            states('input_number.strompreis_pro_wh') | float(0)
-          ) | round(2) }}
-
-      - name: Stromkosten Letzter Monat
-        unique_id: stromkosten_letzter_monat
-        unit_of_measurement: "EUR"
-        state: >
-          {{ (
-            states('sensor.gesamtenergie_letzter_monat') | float(0) *
-            states('input_number.strompreis_pro_wh') | float(0)
-          ) | round(2) }}
-
-      - name: Stromkosten Jahr Bis Heute
-        unique_id: stromkosten_jahr_bis_heute
-        unit_of_measurement: "EUR"
-        state: >
-          {{ (
-            states('sensor.gesamtenergie_jahr_bis_heute') | float(0) *
-            states('input_number.strompreis_pro_wh') | float(0)
-          ) | round(2) }}
-
-sensor:
-  - platform: integration
-    source: sensor.gesamtleistung_terrarium_und_fruehbeete
-    name: Gesamtenergie Gesamt
-    unit_time: h
-    method: trapezoidal
-    round: 3
-
-utility_meter:
-  gesamtenergie_letzte_woche:
-    source: sensor.gesamtenergie_gesamt
-    cycle: weekly
-  gesamtenergie_letzter_monat:
-    source: sensor.gesamtenergie_gesamt
-    cycle: monthly
-  gesamtenergie_jahr_bis_heute:
-    source: sensor.gesamtenergie_gesamt
-    cycle: yearly
+template: !include helpers/template.yaml
+sensor: !include helpers/sensor.yaml
+utility_meter: !include helpers/utility_meter.yaml
 
 automation: !include automations.yaml
 script: !include scripts.yaml

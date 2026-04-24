@@ -1,63 +1,106 @@
 views:
   - type: sections
+    max_columns: 4
+    title: Terrarium
+    path: terrarium
     sections:
       - type: grid
         cards:
           - type: heading
-            heading: Terrarium
+            heading: Sensoren
             heading_style: title
           - graph: line
             type: sensor
             entity: sensor.thermometer_vorne_temperatur
             detail: 2
             hours_to_show: 12
-            limits: {}
+            limits:
+              min: 0
+              max: 50
             grid_options:
               columns: 18
               rows: 2
             name: Temperatur vorne
           - graph: line
             type: sensor
-            entity: sensor.thermometer_vorne_luftfeuchtigkeit
-            detail: 2
-            hours_to_show: 12
-            limits: {}
-            grid_options:
-              rows: 2
-              columns: 18
-            name: Luftfeuchtigkeit vorne
-          - graph: line
-            type: sensor
             entity: sensor.thermometer_hinten_temperatur
             detail: 2
             hours_to_show: 12
-            limits: {}
+            limits:
+              min: 0
+              max: 50
             grid_options:
               columns: 18
               rows: 2
             name: Temperatur hinten
           - graph: line
             type: sensor
+            entity: sensor.thermometer_vorne_luftfeuchtigkeit
+            detail: 2
+            hours_to_show: 12
+            limits:
+              min: 0
+              max: 100
+            grid_options:
+              rows: 2
+              columns: 18
+            name: Luftfeuchtigkeit vorne
+          - graph: line
+            type: sensor
             entity: sensor.thermometer_hinten_luftfeuchtigkeit
             detail: 2
             hours_to_show: 12
-            limits: {}
+            limits:
+              min: 0
+              max: 100
             grid_options:
               rows: 2
               columns: 18
             name: Luftfeuchtigkeit hinten
-        column_span: 3
       - type: grid
         cards:
           - type: heading
-            heading: Frühbeet Krümel
+            heading: Verhalten
+            heading_style: title
+          - type: tile
+            entity: sensor.terrarium_zieltemperatur_aktuell
+            name: Ziel Temp Aktuell
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.terrarium_zieltemperatur_naechste
+            name: Ziel Temp Naechste
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.terrarium_heizung_naechste_aenderung
+            name: Heiz Naechste Aenderung
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.terrarium_beleuchtung_naechste_aenderung
+            name: Licht Naechste Aenderung
+            vertical: false
+            features_position: bottom
+
+  - type: sections
+    max_columns: 4
+    title: Frühbeet Krümel
+    path: fruehbeet-kruemel
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Sensoren
             heading_style: title
           - graph: line
             type: sensor
             entity: sensor.fruhbeet_krumel_temperatur
             detail: 2
             hours_to_show: 12
-            limits: {}
+            limits:
+              min: 0
+              max: 50
             grid_options:
               columns: 18
               rows: 2
@@ -67,23 +110,57 @@ views:
             entity: sensor.fruhbeet_krumel_luftfeuchtigkeit
             detail: 2
             hours_to_show: 12
-            limits: {}
+            limits:
+              min: 0
+              max: 100
             grid_options:
               rows: 2
               columns: 18
             name: Luftfeuchtigkeit
-        column_span: 4
       - type: grid
         cards:
           - type: heading
-            heading: Frühbeet Sternies
+            heading: Verhalten
+            heading_style: title
+          - type: tile
+            entity: sensor.fruehbeet_kruemel_zieltemperatur_aktuell
+            name: Ziel Temp Aktuell
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.fruehbeet_kruemel_zieltemperatur_naechste
+            name: Ziel Temp Naechste
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.fruehbeet_kruemel_heizung_naechste_aenderung
+            name: Heiz Naechste Aenderung
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.fruehbeet_kruemel_beleuchtung_naechste_aenderung
+            name: Licht Naechste Aenderung
+            vertical: false
+            features_position: bottom
+
+  - type: sections
+    max_columns: 4
+    title: Frühbeet Sternies
+    path: fruehbeet-sternies
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Sensoren
             heading_style: title
           - graph: line
             type: sensor
             entity: sensor.fruhbeet_sternies_temperatur
             detail: 2
             hours_to_show: 12
-            limits: {}
+            limits:
+              min: 0
+              max: 50
             grid_options:
               columns: 18
               rows: 2
@@ -93,118 +170,36 @@ views:
             entity: sensor.fruhbeet_sternies_luftfeuchtigkeit
             detail: 2
             hours_to_show: 12
-            limits: {}
+            limits:
+              min: 0
+              max: 100
             grid_options:
               rows: 2
               columns: 18
             name: Luftfeuchtigkeit
-        column_span: 4
-    max_columns: 4
-    title: Sensoren
-    cards: []
-  - type: sections
-    max_columns: 4
-    title: Strom
-    path: strom
-    sections:
       - type: grid
         cards:
           - type: heading
-            heading: Terrarium
+            heading: Verhalten
             heading_style: title
-          - graph: line
-            type: sensor
-            entity: sensor.terrarium_lampen_vorne_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-          - graph: line
-            type: sensor
-            entity: sensor.terrarium_lampen_hinten_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-          - graph: line
-            type: sensor
-            entity: sensor.terrarium_led_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-          - graph: line
-            type: sensor
-            entity: sensor.terrarium_heizung_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-        column_span: 3
-      - type: grid
-        cards:
-          - type: heading
-            heading: Frühbeet Krümel
-            heading_style: title
-          - graph: line
-            type: sensor
-            entity: sensor.steckdose_krumel_links_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-          - graph: line
-            type: sensor
-            entity: sensor.steckdose_krumel_rechts_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-        column_span: 3
-      - type: grid
-        cards:
-          - type: heading
-            heading: Frühbeet Sternies
-            heading_style: title
-          - graph: line
-            type: sensor
-            entity: sensor.sternies_steckdose_links_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-          - graph: line
-            type: sensor
-            entity: sensor.steckdose_sternies_rechts_leistung
-            detail: 1
-            grid_options:
-              columns: 18
-              rows: 2
-        column_span: 3
-  - type: sections
-    max_columns: 4
-    title: Geräte
-    path: gerate
-    sections:
-      - type: grid
-        cards:
-          - type: gauge
-            entity: sensor.thermometer_vorne_batterie
-            name:
-              - type: area
-              - type: device
-          - type: gauge
-            entity: sensor.thermometer_vorne_batterie
-            name:
-              - type: area
-              - type: device
-          - type: gauge
-            entity: sensor.fruhbeet_krumel_batterie
-            name:
-              - type: area
-              - type: device
-          - type: gauge
-            entity: sensor.fruhbeet_sternies_batterie
-            name:
-              - type: area
-              - type: device
+          - type: tile
+            entity: sensor.fruehbeet_sternies_zieltemperatur_aktuell
+            name: Ziel Temp Aktuell
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.fruehbeet_sternies_zieltemperatur_naechste
+            name: Ziel Temp Naechste
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.fruehbeet_sternies_heizung_naechste_aenderung
+            name: Heiz Naechste Aenderung
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.fruehbeet_sternies_beleuchtung_naechste_aenderung
+            name: Licht Naechste Aenderung
+            vertical: false
+            features_position: bottom
+

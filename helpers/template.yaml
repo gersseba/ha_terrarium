@@ -1,0 +1,326 @@
+- sensor:
+    - name: Gesamtleistung Terrarium und Fruehbeete
+      unique_id: gesamtleistung_terrarium_fruehbeete
+      unit_of_measurement: "W"
+      device_class: power
+      state_class: measurement
+      state: >
+        {{ (
+          states('sensor.terrarium_lampen_vorne_leistung') | float(0) +
+          states('sensor.terrarium_lampen_hinten_leistung') | float(0) +
+          states('sensor.terrarium_led_leistung') | float(0) +
+          states('sensor.terrarium_heizung_leistung') | float(0) +
+          states('sensor.steckdose_krumel_links_leistung') | float(0) +
+          states('sensor.steckdose_krumel_rechts_leistung') | float(0) +
+          states('sensor.sternies_steckdose_links_leistung') | float(0) +
+          states('sensor.steckdose_sternies_rechts_leistung') | float(0)
+        ) | round(2) }}
+
+    - name: Strompreis Aktuell Pro Wh
+      unique_id: strompreis_aktuell_pro_wh
+      unit_of_measurement: "EUR/Wh"
+      state: "{{ states('input_number.strompreis_pro_wh') | float(0) | round(5) }}"
+
+    - name: Stromkosten Letzte Woche
+      unique_id: stromkosten_letzte_woche
+      unit_of_measurement: "EUR"
+      state: >
+        {{ (
+          states('sensor.gesamtenergie_letzte_woche') | float(0) *
+          states('input_number.strompreis_pro_wh') | float(0)
+        ) | round(2) }}
+
+    - name: Stromkosten Letzter Monat
+      unique_id: stromkosten_letzter_monat
+      unit_of_measurement: "EUR"
+      state: >
+        {{ (
+          states('sensor.gesamtenergie_letzter_monat') | float(0) *
+          states('input_number.strompreis_pro_wh') | float(0)
+        ) | round(2) }}
+
+    - name: Stromkosten Jahr Bis Heute
+      unique_id: stromkosten_jahr_bis_heute
+      unit_of_measurement: "EUR"
+      state: >
+        {{ (
+          states('sensor.gesamtenergie_jahr_bis_heute') | float(0) *
+          states('input_number.strompreis_pro_wh') | float(0)
+        ) | round(2) }}
+
+- sensor:
+    - name: Terrarium Zieltemperatur Aktuell
+      unique_id: terrarium_zieltemperatur_aktuell
+      unit_of_measurement: "°C"
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.terrarium_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.terrarium_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.terrarium_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.terrarium_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_nachts') }}
+        {% elif now_m < m_mittags %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_morgens') }}
+        {% elif now_m < m_abends %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_mittags') }}
+        {% elif now_m < m_nachts %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_abends') }}
+        {% else %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_nachts') }}
+        {% endif %}
+
+    - name: Terrarium Zieltemperatur Naechste
+      unique_id: terrarium_zieltemperatur_naechste
+      unit_of_measurement: "°C"
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.terrarium_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.terrarium_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.terrarium_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.terrarium_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_morgens') }}
+        {% elif now_m < m_mittags %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_mittags') }}
+        {% elif now_m < m_abends %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_abends') }}
+        {% elif now_m < m_nachts %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_nachts') }}
+        {% else %}
+          {{ states('input_number.terrarium_heizung_zieltemperatur_morgens') }}
+        {% endif %}
+
+    - name: Terrarium Heizung Naechste Aenderung
+      unique_id: terrarium_heizung_naechste_aenderung
+      icon: mdi:clock-outline
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.terrarium_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.terrarium_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.terrarium_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.terrarium_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ '%02d:%02d' | format(morgens[0] | int, morgens[1] | int) }}
+        {% elif now_m < m_mittags %}
+          {{ '%02d:%02d' | format(mittags[0] | int, mittags[1] | int) }}
+        {% elif now_m < m_abends %}
+          {{ '%02d:%02d' | format(abends[0] | int, abends[1] | int) }}
+        {% elif now_m < m_nachts %}
+          {{ '%02d:%02d' | format(nachts[0] | int, nachts[1] | int) }}
+        {% else %}
+          {{ '%02d:%02d' | format(morgens[0] | int, morgens[1] | int) }}
+        {% endif %}
+
+    - name: Terrarium Beleuchtung Naechste Aenderung
+      unique_id: terrarium_beleuchtung_naechste_aenderung
+      icon: mdi:clock-outline
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set start = states('input_datetime.terrarium_lampen_start').split(':') %}
+        {% set ende = states('input_datetime.terrarium_lampen_ende').split(':') %}
+        {% set m_start = start[0] | int * 60 + start[1] | int %}
+        {% set m_ende = ende[0] | int * 60 + ende[1] | int %}
+        {% if now_m < m_start %}
+          {{ '%02d:%02d' | format(start[0] | int, start[1] | int) }}
+        {% elif now_m < m_ende %}
+          {{ '%02d:%02d' | format(ende[0] | int, ende[1] | int) }}
+        {% else %}
+          {{ '%02d:%02d' | format(start[0] | int, start[1] | int) }}
+        {% endif %}
+
+    - name: Fruehbeet Kruemel Zieltemperatur Aktuell
+      unique_id: fruehbeet_kruemel_zieltemperatur_aktuell
+      unit_of_measurement: "°C"
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.fruehbeet_kruemel_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.fruehbeet_kruemel_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.fruehbeet_kruemel_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.fruehbeet_kruemel_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_nachts') }}
+        {% elif now_m < m_mittags %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_morgens') }}
+        {% elif now_m < m_abends %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_mittags') }}
+        {% elif now_m < m_nachts %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_abends') }}
+        {% else %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_nachts') }}
+        {% endif %}
+
+    - name: Fruehbeet Kruemel Zieltemperatur Naechste
+      unique_id: fruehbeet_kruemel_zieltemperatur_naechste
+      unit_of_measurement: "°C"
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.fruehbeet_kruemel_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.fruehbeet_kruemel_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.fruehbeet_kruemel_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.fruehbeet_kruemel_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_morgens') }}
+        {% elif now_m < m_mittags %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_mittags') }}
+        {% elif now_m < m_abends %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_abends') }}
+        {% elif now_m < m_nachts %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_nachts') }}
+        {% else %}
+          {{ states('input_number.fruehbeet_kruemel_heizung_zieltemperatur_morgens') }}
+        {% endif %}
+
+    - name: Fruehbeet Kruemel Heizung Naechste Aenderung
+      unique_id: fruehbeet_kruemel_heizung_naechste_aenderung
+      icon: mdi:clock-outline
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.fruehbeet_kruemel_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.fruehbeet_kruemel_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.fruehbeet_kruemel_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.fruehbeet_kruemel_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ '%02d:%02d' | format(morgens[0] | int, morgens[1] | int) }}
+        {% elif now_m < m_mittags %}
+          {{ '%02d:%02d' | format(mittags[0] | int, mittags[1] | int) }}
+        {% elif now_m < m_abends %}
+          {{ '%02d:%02d' | format(abends[0] | int, abends[1] | int) }}
+        {% elif now_m < m_nachts %}
+          {{ '%02d:%02d' | format(nachts[0] | int, nachts[1] | int) }}
+        {% else %}
+          {{ '%02d:%02d' | format(morgens[0] | int, morgens[1] | int) }}
+        {% endif %}
+
+    - name: Fruehbeet Kruemel Beleuchtung Naechste Aenderung
+      unique_id: fruehbeet_kruemel_beleuchtung_naechste_aenderung
+      icon: mdi:clock-outline
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set start = states('input_datetime.fruehbeet_kruemel_lampen_start').split(':') %}
+        {% set ende = states('input_datetime.fruehbeet_kruemel_lampen_ende').split(':') %}
+        {% set m_start = start[0] | int * 60 + start[1] | int %}
+        {% set m_ende = ende[0] | int * 60 + ende[1] | int %}
+        {% if now_m < m_start %}
+          {{ '%02d:%02d' | format(start[0] | int, start[1] | int) }}
+        {% elif now_m < m_ende %}
+          {{ '%02d:%02d' | format(ende[0] | int, ende[1] | int) }}
+        {% else %}
+          {{ '%02d:%02d' | format(start[0] | int, start[1] | int) }}
+        {% endif %}
+
+    - name: Fruehbeet Sternies Zieltemperatur Aktuell
+      unique_id: fruehbeet_sternies_zieltemperatur_aktuell
+      unit_of_measurement: "°C"
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.fruehbeet_sternies_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.fruehbeet_sternies_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.fruehbeet_sternies_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.fruehbeet_sternies_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_nachts') }}
+        {% elif now_m < m_mittags %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_morgens') }}
+        {% elif now_m < m_abends %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_mittags') }}
+        {% elif now_m < m_nachts %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_abends') }}
+        {% else %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_nachts') }}
+        {% endif %}
+
+    - name: Fruehbeet Sternies Zieltemperatur Naechste
+      unique_id: fruehbeet_sternies_zieltemperatur_naechste
+      unit_of_measurement: "°C"
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.fruehbeet_sternies_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.fruehbeet_sternies_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.fruehbeet_sternies_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.fruehbeet_sternies_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_morgens') }}
+        {% elif now_m < m_mittags %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_mittags') }}
+        {% elif now_m < m_abends %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_abends') }}
+        {% elif now_m < m_nachts %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_nachts') }}
+        {% else %}
+          {{ states('input_number.fruehbeet_sternies_heizung_zieltemperatur_morgens') }}
+        {% endif %}
+
+    - name: Fruehbeet Sternies Heizung Naechste Aenderung
+      unique_id: fruehbeet_sternies_heizung_naechste_aenderung
+      icon: mdi:clock-outline
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set morgens = states('input_datetime.fruehbeet_sternies_heizung_morgens').split(':') %}
+        {% set mittags = states('input_datetime.fruehbeet_sternies_heizung_mittags').split(':') %}
+        {% set abends = states('input_datetime.fruehbeet_sternies_heizung_abends').split(':') %}
+        {% set nachts = states('input_datetime.fruehbeet_sternies_heizung_nachts').split(':') %}
+        {% set m_morgens = morgens[0] | int * 60 + morgens[1] | int %}
+        {% set m_mittags = mittags[0] | int * 60 + mittags[1] | int %}
+        {% set m_abends = abends[0] | int * 60 + abends[1] | int %}
+        {% set m_nachts = nachts[0] | int * 60 + nachts[1] | int %}
+        {% if now_m < m_morgens %}
+          {{ '%02d:%02d' | format(morgens[0] | int, morgens[1] | int) }}
+        {% elif now_m < m_mittags %}
+          {{ '%02d:%02d' | format(mittags[0] | int, mittags[1] | int) }}
+        {% elif now_m < m_abends %}
+          {{ '%02d:%02d' | format(abends[0] | int, abends[1] | int) }}
+        {% elif now_m < m_nachts %}
+          {{ '%02d:%02d' | format(nachts[0] | int, nachts[1] | int) }}
+        {% else %}
+          {{ '%02d:%02d' | format(morgens[0] | int, morgens[1] | int) }}
+        {% endif %}
+
+    - name: Fruehbeet Sternies Beleuchtung Naechste Aenderung
+      unique_id: fruehbeet_sternies_beleuchtung_naechste_aenderung
+      icon: mdi:clock-outline
+      state: >
+        {% set now_m = now().hour * 60 + now().minute %}
+        {% set start = states('input_datetime.fruehbeet_sternies_lampen_start').split(':') %}
+        {% set ende = states('input_datetime.fruehbeet_sternies_lampen_ende').split(':') %}
+        {% set m_start = start[0] | int * 60 + start[1] | int %}
+        {% set m_ende = ende[0] | int * 60 + ende[1] | int %}
+        {% if now_m < m_start %}
+          {{ '%02d:%02d' | format(start[0] | int, start[1] | int) }}
+        {% elif now_m < m_ende %}
+          {{ '%02d:%02d' | format(ende[0] | int, ende[1] | int) }}
+        {% else %}
+          {{ '%02d:%02d' | format(start[0] | int, start[1] | int) }}
+        {% endif %}

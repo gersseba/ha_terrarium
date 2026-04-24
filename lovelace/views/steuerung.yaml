@@ -84,9 +84,14 @@ views:
             name: Ziel Temp Nachts
             vertical: false
             features_position: bottom
+          - type: tile
+            entity: input_number.terrarium_heizung_hysterese
+            name: Hysterese
+            vertical: false
+            features_position: bottom
 
   - type: sections
-    title: Fruehbeet Kruemel
+    title: Frühbeet Krümel
     path: fruehbeet-kruemel
     max_columns: 4
     sections:
@@ -165,9 +170,14 @@ views:
             name: Ziel Temp Nachts
             vertical: false
             features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_kruemel_heizung_hysterese
+            name: Hysterese
+            vertical: false
+            features_position: bottom
 
   - type: sections
-    title: Fruehbeet Sternies
+    title: Frühbeet Sternies
     path: fruehbeet-sternies
     max_columns: 4
     sections:
@@ -244,5 +254,10 @@ views:
           - type: tile
             entity: input_number.fruehbeet_sternies_heizung_zieltemperatur_nachts
             name: Ziel Temp Nachts
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: input_number.fruehbeet_sternies_heizung_hysterese
+            name: Hysterese
             vertical: false
             features_position: bottom

@@ -1,0 +1,9 @@
+gesamtenergie_letzte_woche:
+  source: sensor.gesamtenergie_gesamt
+  cycle: weekly
+gesamtenergie_letzter_monat:
+  source: sensor.gesamtenergie_gesamt
+  cycle: monthly
+gesamtenergie_jahr_bis_heute:
+  source: sensor.gesamtenergie_gesamt
+  cycle: yearly
