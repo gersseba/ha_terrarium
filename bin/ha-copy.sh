@@ -9,6 +9,7 @@ declare -a SHORTCUTS_LIST=(
   "config:configuration.yaml"
   "scripts:scripts.yaml"
   "scenes:scenes.yaml"
+  "view_kroeten:lovelace/views/kroten.yaml"
 )
 
 usage() {
@@ -26,6 +27,7 @@ Shortcuts (commonly synced files):
   config             configuration.yaml
   scripts            scripts.yaml
   scenes             scenes.yaml
+  view_kroeten       lovelace/views/kroten.yaml
 
 Examples:
   ./bin/ha-copy.sh input_number
@@ -71,6 +73,7 @@ case "$local_file" in
   config)         local_file="configuration.yaml" ;;
   scripts)        local_file="scripts.yaml" ;;
   scenes)         local_file="scenes.yaml" ;;
+  view_kroeten)   local_file="lovelace/views/kroten.yaml" ;;
 esac
 remote_path="${2:-/config/$local_file}" 
 

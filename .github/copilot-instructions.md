@@ -58,6 +58,12 @@ When adding new logic, prefer these patterns:
 - Prefer incremental, reviewable changes over large rewrites.
 - If introducing new entities, follow the same prefix and suffix schema used by current helpers.
 
+## View Management
+- Manage Lovelace dashboards in this repository via YAML files.
+- Current repo-managed dashboard file: `lovelace/views/kroten.yaml`.
+- Keep dashboard structure and card entity references reviewable in git commits.
+- Deploy dashboard updates using `./bin/ha-copy.sh view_kroeten`.
+
 ## Device Management
 Zigbee devices are managed via Home Assistant UI but documented in git for automation reference:
 - Devices are discovered and added via the Zigbee integration in the UI.
