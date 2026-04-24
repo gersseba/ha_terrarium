@@ -1,16 +1,37 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+declare -a SHORTCUTS_LIST=(
+  "input_number:helpers/input_number.yaml"
+  "input_select:helpers/input_select.yaml"
+  "input_datetime:helpers/input_datetime.yaml"
+  "automations:automations.yaml"
+  "config:configuration.yaml"
+  "scripts:scripts.yaml"
+  "scenes:scenes.yaml"
+)
+
 usage() {
   cat <<'EOF'
 Copy a local file to Home Assistant via SSH (scp).
 
 Usage:
-  ./bin/ha-copy.sh <local-file> [remote-path]
+  ./bin/ha-copy.sh <shortcut|local-file> [remote-path]
+
+Shortcuts (commonly synced files):
+  input_number       helpers/input_number.yaml
+  input_select       helpers/input_select.yaml
+  input_datetime     helpers/input_datetime.yaml
+  automations        automations.yaml
+  config             configuration.yaml
+  scripts            scripts.yaml
+  scenes             scenes.yaml
 
 Examples:
-  HA_SSH_HOST=192.168.1.50 ./bin/ha-copy.sh automations.yaml
-  HA_SSH_HOST=homeassistant.local HA_SSH_USER=root ./bin/ha-copy.sh helpers/input_select.yaml /config/helpers/input_select.yaml
+  ./bin/ha-copy.sh input_number
+  ./bin/ha-copy.sh automations
+  ./bin/ha-copy.sh helpers/input_select.yaml
+  ./bin/ha-copy.sh automations.yaml /config/automations.yaml
 
 Environment variables:
   HA_SSH_HOST   Required. Hostname or IP of Home Assistant (URL is also accepted).
@@ -36,12 +57,22 @@ fi
 
 if [[ -z "${HA_SSH_HOST:-}" ]]; then
   echo "Error: HA_SSH_HOST is required."
-  echo "Example: HA_SSH_HOST=192.168.1.50 ./bin/ha-copy.sh automations.yaml"
+  echo "Example: ./bin/ha-copy.sh input_number"
   exit 1
 fi
 
+# Resolve shortcut names to file paths
 local_file="$1"
-remote_path="${2:-/config/$(basename "$local_file")}" 
+case "$local_file" in
+  input_number)   local_file="helpers/input_number.yaml" ;;
+  input_select)   local_file="helpers/input_select.yaml" ;;
+  input_datetime) local_file="helpers/input_datetime.yaml" ;;
+  automations)    local_file="automations.yaml" ;;
+  config)         local_file="configuration.yaml" ;;
+  scripts)        local_file="scripts.yaml" ;;
+  scenes)         local_file="scenes.yaml" ;;
+esac
+remote_path="${2:-/config/$local_file}" 
 
 if [[ ! -f "$local_file" ]]; then
   echo "Error: Local file not found: $local_file"

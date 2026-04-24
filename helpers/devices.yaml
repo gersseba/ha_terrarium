@@ -1,0 +1,365 @@
+# Device Registry Reference
+# Auto-exported from Home Assistant core.device_registry
+# DO NOT edit manually; regenerate with: ./bin/ha-export-devices.sh
+# 
+# Used for device_id references in automations.yaml
+# Plug usage mapping for automations:
+# - Fruehbeet Kruemel:
+#   - left plug -> lighting
+#   - right plug -> heating
+# - Fruehbeet Sternies:
+#   - left plug -> heating
+#   - right plug -> heating
+# - Terrarium:
+#   - vorne plug -> lamps (2 lamps via multi-plug)
+#   - hinten plug -> lamps (2 lamps via multi-plug)
+#   - heizung plug -> heating
+#   - led plug -> power monitoring only (not used for control)
+# Automation rule:
+# - Always use device_id values from this file.
+# - Prefer device_id over entity_id in automations for stable references.
+# `name` is the effective display name (prefers UI custom name if set).
+
+devices:
+  # unknown - unknown
+  # Area ID: None
+  - id: 44b2cc8da0197d4a0e91b2ccefa10f2a
+    name: "Sun"
+    name_by_user: null
+    technical_name: "Sun"
+    manufacturer: null
+    model: null
+    area_id: null
+    area_name: null
+
+  # Cloudflared - Home Assistant App
+  # Area ID: None
+  - id: fa46ec2ef55b6c6ae56f3f9725e2cacc
+    name: "Cloudflared"
+    name_by_user: null
+    technical_name: "Cloudflared"
+    manufacturer: "Cloudflared"
+    model: "Home Assistant App"
+    area_id: null
+    area_name: null
+
+  # Official apps - Home Assistant App
+  # Area ID: None
+  - id: fdf5e6c09635e456499b9932ddb3126e
+    name: "File editor"
+    name_by_user: null
+    technical_name: "File editor"
+    manufacturer: "Official apps"
+    model: "Home Assistant App"
+    area_id: null
+    area_name: null
+
+  # Official apps - Home Assistant App
+  # Area ID: None
+  - id: 2bd1abea40eea53426551deca10d47fe
+    name: "Git pull"
+    name_by_user: null
+    technical_name: "Git pull"
+    manufacturer: "Official apps"
+    model: "Home Assistant App"
+    area_id: null
+    area_name: null
+
+  # Home Assistant - Home Assistant Core
+  # Area ID: None
+  - id: 5a7fa68fe573b90bbcd2ebbaa2a25c97
+    name: "Home Assistant Core"
+    name_by_user: null
+    technical_name: "Home Assistant Core"
+    manufacturer: "Home Assistant"
+    model: "Home Assistant Core"
+    area_id: null
+    area_name: null
+
+  # Home Assistant - Home Assistant Supervisor
+  # Area ID: None
+  - id: 703fe69d07259d99c6640aae418359dc
+    name: "Home Assistant Supervisor"
+    name_by_user: null
+    technical_name: "Home Assistant Supervisor"
+    manufacturer: "Home Assistant"
+    model: "Home Assistant Supervisor"
+    area_id: null
+    area_name: null
+
+  # Home Assistant - Home Assistant Host
+  # Area ID: None
+  - id: 910e3921e8cf9f7026449b76d8aa7780
+    name: "Home Assistant Host"
+    name_by_user: null
+    technical_name: "Home Assistant Host"
+    manufacturer: "Home Assistant"
+    model: "Home Assistant Host"
+    area_id: null
+    area_name: null
+
+  # Home Assistant - Home Assistant Operating System
+  # Area ID: None
+  - id: b489d156cb734c78abecea4d1f7caf36
+    name: "Home Assistant Operating System"
+    name_by_user: null
+    technical_name: "Home Assistant Operating System"
+    manufacturer: "Home Assistant"
+    model: "Home Assistant Operating System"
+    area_id: null
+    area_name: null
+
+  # Home Assistant - Home Assistant Backup
+  # Area ID: None
+  - id: 03337597f846c32719d512a201fa2bf1
+    name: "Backup"
+    name_by_user: null
+    technical_name: "Backup"
+    manufacturer: "Home Assistant"
+    model: "Home Assistant Backup"
+    area_id: null
+    area_name: null
+
+  # Google Inc. - Chromecast
+  # Area ID: None
+  - id: 7f0f412fee3c7f04d250bb5cfce4558d
+    name: "Living Room TV"
+    name_by_user: null
+    technical_name: "Living Room TV"
+    manufacturer: "Google Inc."
+    model: "Chromecast"
+    area_id: null
+    area_name: null
+
+  # Met.no - Forecast
+  # Area ID: None
+  - id: f9a85beb8d93bde5822200bef0d9f50b
+    name: "Forecast"
+    name_by_user: null
+    technical_name: "Forecast"
+    manufacturer: "Met.no"
+    model: "Forecast"
+    area_id: null
+    area_name: null
+
+  # Google - Google Translate TTS
+  # Area ID: None
+  - id: 51d5b447c0cca93de1b972b5366ecb1d
+    name: "Google Übersetzer en com"
+    name_by_user: null
+    technical_name: "Google Übersetzer en com"
+    manufacturer: "Google"
+    model: "Google Translate TTS"
+    area_id: null
+    area_name: null
+
+  # Nabu Casa - Home Assistant Connect ZBT-2
+  # Area ID: None
+  - id: 3dc45ef8808f1c2a016024ad949e64a6
+    name: "Home Assistant Connect ZBT-2 (E072A1F7A77C)"
+    name_by_user: null
+    technical_name: "Home Assistant Connect ZBT-2 (E072A1F7A77C)"
+    manufacturer: "Nabu Casa"
+    model: "Home Assistant Connect ZBT-2"
+    area_id: null
+    area_name: null
+
+  # Nabu Casa - Home Assistant Connect ZBT-2
+  # Area ID: None
+  - id: c29a224303b61e57a2bbe32939973db0
+    name: "Home Assistant Connect ZBT-2"
+    name_by_user: null
+    technical_name: "Home Assistant Connect ZBT-2"
+    manufacturer: "Nabu Casa"
+    model: "Home Assistant Connect ZBT-2"
+    area_id: null
+    area_name: null
+
+  # SONOFF - SNZB-02D
+  # Area ID: fruhbeet_sternies
+  # Area Name: Frühbeet Sternies
+  - id: 06ffac65f77818aa879e5db15e52865b
+    name: "Thermometer"
+    name_by_user: "Thermometer"
+    technical_name: "SONOFF SNZB-02D"
+    manufacturer: "SONOFF"
+    model: "SNZB-02D"
+    area_id: "fruhbeet_sternies"
+    area_name: "Frühbeet Sternies"
+
+  # SONOFF - S60ZBTPF
+  # Area ID: terrarium
+  # Area Name: Terrarium
+  - id: 24cc22083ab3a8b64494ad3f1dd7e3b9
+    name: "Steckdose Lampen hinten"
+    name_by_user: "Steckdose Lampen hinten"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "terrarium"
+    area_name: "Terrarium"
+
+  # SONOFF - S60ZBTPF
+  # Area ID: terrarium
+  # Area Name: Terrarium
+  - id: a41c61defbb6da53874646bd2677c75d
+    name: "Steckdose Lampen vorne"
+    name_by_user: "Steckdose Lampen vorne"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "terrarium"
+    area_name: "Terrarium"
+
+  # SONOFF - S60ZBTPF
+  # Area ID: terrarium
+  # Area Name: Terrarium
+  - id: b3cfcfc6607487a8f797c2cd92263377
+    name: "Steckdose LED"
+    name_by_user: "Steckdose LED"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "terrarium"
+    area_name: "Terrarium"
+
+  # SONOFF - S60ZBTPF
+  # Area ID: terrarium
+  # Area Name: Terrarium
+  - id: 7f7f621198bb172387384b3554263c74
+    name: "Steckdose Heizung"
+    name_by_user: "Steckdose Heizung"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "terrarium"
+    area_name: "Terrarium"
+
+  # SONOFF - S60ZBTPF
+  # Area ID: fruhbeet_sternies
+  # Area Name: Frühbeet Sternies
+  - id: 743afcb166f842ac755892a6682ded5a
+    name: "Steckdose Sternies Links"
+    name_by_user: "Steckdose Sternies Links"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "fruhbeet_sternies"
+    area_name: "Frühbeet Sternies"
+
+  # SONOFF - S60ZBTPF
+  # Area ID: fruhbeet_sternies
+  # Area Name: Frühbeet Sternies
+  - id: 96ff19fd86ae55844045f95f401ba895
+    name: "Steckdose Sternies rechts"
+    name_by_user: "Steckdose Sternies rechts"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "fruhbeet_sternies"
+    area_name: "Frühbeet Sternies"
+
+  # SONOFF - SNZB-02D
+  # Area ID: terrarium
+  # Area Name: Terrarium
+  - id: 5f6ddf3de105e99b038a7143680f98c3
+    name: "Thermometer vorne"
+    name_by_user: "Thermometer vorne"
+    technical_name: "SONOFF SNZB-02D"
+    manufacturer: "SONOFF"
+    model: "SNZB-02D"
+    area_id: "terrarium"
+    area_name: "Terrarium"
+
+  # SONOFF - SNZB-02D
+  # Area ID: fruhbeet_krumel
+  # Area Name: Frühbeet Krümel
+  - id: dffb9d3545267bb87136e075edb8d359
+    name: "Thermometer"
+    name_by_user: "Thermometer"
+    technical_name: "SONOFF SNZB-02D"
+    manufacturer: "SONOFF"
+    model: "SNZB-02D"
+    area_id: "fruhbeet_krumel"
+    area_name: "Frühbeet Krümel"
+
+  # Sagemcom - PYUR TV BOX
+  # Area ID: None
+  - id: 2071201e47e892859ed65ec667e64bc6
+    name: "PYUR TV BOX"
+    name_by_user: null
+    technical_name: "PYUR TV BOX"
+    manufacturer: "Sagemcom"
+    model: "PYUR TV BOX"
+    area_id: null
+    area_name: null
+
+  # SONOFF - S60ZBTPF
+  # Area ID: fruhbeet_krumel
+  # Area Name: Frühbeet Krümel
+  - id: 3ea6cd86c82538fda1eed9c8fd683479
+    name: "Steckdose Krümel rechts"
+    name_by_user: "Steckdose Krümel rechts"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "fruhbeet_krumel"
+    area_name: "Frühbeet Krümel"
+
+  # SONOFF - S60ZBTPF
+  # Area ID: fruhbeet_krumel
+  # Area Name: Frühbeet Krümel
+  - id: 88dde9fbd2e4b8ef4b0ea7bfd470ff55
+    name: "Steckdose Krümel links"
+    name_by_user: "Steckdose Krümel links"
+    technical_name: "SONOFF S60ZBTPF"
+    manufacturer: "SONOFF"
+    model: "S60ZBTPF"
+    area_id: "fruhbeet_krumel"
+    area_name: "Frühbeet Krümel"
+
+  # SONOFF - SNZB-02D
+  # Area ID: terrarium
+  # Area Name: Terrarium
+  - id: 5a6d2c670eb3434c87a5486b5ce14c7d
+    name: "Thermometer hinten"
+    name_by_user: "Thermometer hinten"
+    technical_name: "SONOFF SNZB-02D"
+    manufacturer: "SONOFF"
+    model: "SNZB-02D"
+    area_id: "terrarium"
+    area_name: "Terrarium"
+
+  # Signify Netherlands B.V. - LCA001
+  # Area ID: None
+  - id: e5431e4234733ef0c61d5564b9accaec
+    name: "Signify Netherlands B.V. LCA001"
+    name_by_user: null
+    technical_name: "Signify Netherlands B.V. LCA001"
+    manufacturer: "Signify Netherlands B.V."
+    model: "LCA001"
+    area_id: null
+    area_name: null
+
+  # Signify Netherlands B.V. - LCA001
+  # Area ID: None
+  - id: 48a4b78450e60a2fbdee9f1c3ace18a4
+    name: "Signify Netherlands B.V. LCA001"
+    name_by_user: null
+    technical_name: "Signify Netherlands B.V. LCA001"
+    manufacturer: "Signify Netherlands B.V."
+    model: "LCA001"
+    area_id: null
+    area_name: null
+
+  # Official apps - Home Assistant App
+  # Area ID: None
+  - id: d014a06f8788c68e64da7b18c834134d
+    name: "Terminal & SSH"
+    name_by_user: null
+    technical_name: "Terminal & SSH"
+    manufacturer: "Official apps"
+    model: "Home Assistant App"
+    area_id: null
+    area_name: null
+

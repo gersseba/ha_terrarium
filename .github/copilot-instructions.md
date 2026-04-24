@@ -57,3 +57,29 @@ When adding new logic, prefer these patterns:
 - Avoid renaming existing entities unless explicitly requested, to prevent broken references.
 - Prefer incremental, reviewable changes over large rewrites.
 - If introducing new entities, follow the same prefix and suffix schema used by current helpers.
+
+## Device Management
+Zigbee devices are managed via Home Assistant UI but documented in git for automation reference:
+- Devices are discovered and added via the Zigbee integration in the UI.
+- Device IDs are immutable identifiers (e.g., `abf14bfb7911c4c9...`) that never change even if you rename the device.
+- Device IDs are extracted and stored in `helpers/devices.yaml` for reference in automations.
+- For each automation, find and copy the relevant `device_id` values from `helpers/devices.yaml`.
+- To refresh the device list: run `./bin/ha-export-devices.sh` (requires SSH access to HA).
+- When writing automations that target devices, use `device_id:` not `entity_id:` for maximum stability.
+- Example automation trigger:
+  ```yaml
+  trigger:
+    - platform: device
+      device_id: abf14bfb7911c4c9  # Terrarium heating plug
+      domain: switch
+      type: turned_on
+  ```
+
+## Plug Usage Mapping
+Use this mapping when assigning plugs in automations:
+- Fruehbeet Kruemel: left plug is lighting, right plug is heating.
+- Fruehbeet Sternies: left and right plugs are both heating.
+- Terrarium:
+  - `vorne` and `hinten` plugs are for two lamps each (via multi-plug).
+  - `heizung` plug is for heating.
+  - `led` plug is only for power monitoring and should not be used for control automations.
