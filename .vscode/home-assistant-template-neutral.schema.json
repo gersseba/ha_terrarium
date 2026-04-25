@@ -1,0 +1,6 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Home Assistant Template Include Neutral Schema",
+  "description": "Neutral schema to prevent incorrect SAM schema validation on Home Assistant template include files.",
+  "type": ["array", "object"]
+}

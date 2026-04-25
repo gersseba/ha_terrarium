@@ -1,4 +1,7 @@
 {
+  "yaml.schemas": {
+    ".vscode/home-assistant-template-neutral.schema.json": "helpers/template.yaml"
+  },
   "yaml.customTags": [
     "!include scalar",
     "!include_dir_list scalar",

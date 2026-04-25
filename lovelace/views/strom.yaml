@@ -13,6 +13,7 @@ views:
             type: sensor
             entity: sensor.terrarium_lampen_vorne_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -20,6 +21,7 @@ views:
             type: sensor
             entity: sensor.terrarium_lampen_hinten_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -27,6 +29,7 @@ views:
             type: sensor
             entity: sensor.terrarium_led_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -34,6 +37,7 @@ views:
             type: sensor
             entity: sensor.terrarium_heizung_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -47,6 +51,7 @@ views:
             type: sensor
             entity: sensor.steckdose_krumel_links_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -54,6 +59,7 @@ views:
             type: sensor
             entity: sensor.steckdose_krumel_rechts_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -67,6 +73,7 @@ views:
             type: sensor
             entity: sensor.sternies_steckdose_links_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -74,6 +81,7 @@ views:
             type: sensor
             entity: sensor.steckdose_sternies_rechts_leistung
             detail: 1
+            hours_to_show: 12
             grid_options:
               columns: 18
               rows: 2
@@ -122,7 +130,7 @@ views:
             heading_style: title
           - type: tile
             entity: sensor.strompreis_aktuell_pro_wh
-            name: Preis Pro Wh
+            name: Preis Pro kWh
             vertical: false
             features_position: bottom
           - type: tile

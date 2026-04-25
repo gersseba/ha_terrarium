@@ -190,9 +190,18 @@
           sequence:
             - action: switch.turn_on
               target:
-                device_id:
-                  - a41c61defbb6da53874646bd2677c75d
-                  - 24cc22083ab3a8b64494ad3f1dd7e3b9
+                device_id: a41c61defbb6da53874646bd2677c75d
+            - choose:
+                - conditions:
+                    - condition: template
+                      value_template: >
+                        {% set hinten = device_entities('24cc22083ab3a8b64494ad3f1dd7e3b9') | select('match', '^switch\\.') | list %}
+                        {{ hinten | count > 0 and is_state(hinten[0], 'off') }}
+                  sequence:
+                    - delay: "00:03:00"
+            - action: switch.turn_on
+              target:
+                device_id: 24cc22083ab3a8b64494ad3f1dd7e3b9
       default:
         - action: switch.turn_off
           target:
@@ -496,9 +505,18 @@
           sequence:
             - action: switch.turn_on
               target:
-                device_id:
-                  - a41c61defbb6da53874646bd2677c75d
-                  - 24cc22083ab3a8b64494ad3f1dd7e3b9
+                device_id: a41c61defbb6da53874646bd2677c75d
+            - choose:
+                - conditions:
+                    - condition: template
+                      value_template: >
+                        {% set hinten = device_entities('24cc22083ab3a8b64494ad3f1dd7e3b9') | select('match', '^switch\\.') | list %}
+                        {{ hinten | count > 0 and is_state(hinten[0], 'off') }}
+                  sequence:
+                    - delay: "00:03:00"
+            - action: switch.turn_on
+              target:
+                device_id: 24cc22083ab3a8b64494ad3f1dd7e3b9
       default:
         - action: switch.turn_off
           target:
