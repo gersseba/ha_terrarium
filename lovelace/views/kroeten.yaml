@@ -11,7 +11,7 @@ views:
             heading_style: title
           - graph: line
             type: sensor
-            entity: sensor.thermometer_vorne_temperatur
+            entity: sensor.terrarium_temperatur_durchschnitt
             detail: 2
             hours_to_show: 12
             limits:
@@ -20,22 +20,10 @@ views:
             grid_options:
               columns: 18
               rows: 2
-            name: Temperatur vorne
+            name: Temperatur durchschnitt
           - graph: line
             type: sensor
-            entity: sensor.thermometer_hinten_temperatur
-            detail: 2
-            hours_to_show: 12
-            limits:
-              min: 0
-              max: 50
-            grid_options:
-              columns: 18
-              rows: 2
-            name: Temperatur hinten
-          - graph: line
-            type: sensor
-            entity: sensor.thermometer_vorne_luftfeuchtigkeit
+            entity: sensor.terrarium_luftfeuchtigkeit_durchschnitt
             detail: 2
             hours_to_show: 12
             limits:
@@ -44,19 +32,7 @@ views:
             grid_options:
               rows: 2
               columns: 18
-            name: Luftfeuchtigkeit vorne
-          - graph: line
-            type: sensor
-            entity: sensor.thermometer_hinten_luftfeuchtigkeit
-            detail: 2
-            hours_to_show: 12
-            limits:
-              min: 0
-              max: 100
-            grid_options:
-              rows: 2
-              columns: 18
-            name: Luftfeuchtigkeit hinten
+            name: Luftfeuchtigkeit durchschnitt
       - type: grid
         cards:
           - type: heading

@@ -12,7 +12,7 @@
       state: Auto
   action:
     - variables:
-        current_temp: "{{ ((states('sensor.thermometer_vorne_temperatur') | float(0) + states('sensor.thermometer_hinten_temperatur') | float(0)) / 2) }}"
+        current_temp: "{{ states('sensor.terrarium_temperatur_durchschnitt') | float(0) }}"
         target_temp: "{{ states('sensor.terrarium_zieltemperatur_aktuell') | float(0) }}"
         hysteresis: "{{ states('input_number.terrarium_heizung_hysterese') | float(0.5) }}"
     - choose:

@@ -2,6 +2,7 @@
 set -euo pipefail
 
 declare -a SHORTCUTS_LIST=(
+  "all:__ALL__"
   "input_number:helpers/input_number.yaml"
   "input_select:helpers/input_select.yaml"
   "input_datetime:helpers/input_datetime.yaml"
@@ -28,6 +29,7 @@ Usage:
   ./bin/ha-copy.sh <shortcut|local-file> [remote-path]
 
 Shortcuts (commonly synced files):
+  all                all files listed below
   input_number       helpers/input_number.yaml
   input_select       helpers/input_select.yaml
   input_datetime     helpers/input_datetime.yaml
@@ -117,6 +119,34 @@ if [[ "$shortcut" == "views" ]]; then
     remote_target="${remote_base}/$(basename "$view_file")"
     echo "Copying $view_file -> ${ssh_user}@${ssh_host}:${remote_target}"
     "${scp_cmd[@]}" "$view_file" "${ssh_user}@${ssh_host}:${remote_target}"
+  done
+
+  echo "Done."
+  exit 0
+fi
+
+# Bulk copy all files that have explicit shortcut mappings.
+if [[ "$shortcut" == "all" ]]; then
+  remote_root="${2:-/config}"
+  remote_root="${remote_root%/}"
+
+  for entry in "${SHORTCUTS_LIST[@]}"; do
+    key="${entry%%:*}"
+    path="${entry#*:}"
+
+    # Skip meta and wildcard shortcuts.
+    if [[ "$key" == "all" || "$key" == "views" ]]; then
+      continue
+    fi
+
+    if [[ ! -f "$path" ]]; then
+      echo "Error: Local file not found: $path"
+      exit 1
+    fi
+
+    remote_target="${remote_root}/${path}"
+    echo "Copying $path -> ${ssh_user}@${ssh_host}:${remote_target}"
+    "${scp_cmd[@]}" "$path" "${ssh_user}@${ssh_host}:${remote_target}"
   done
 
   echo "Done."

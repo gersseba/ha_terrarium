@@ -129,11 +129,6 @@ views:
             heading: Strompreis
             heading_style: title
           - type: tile
-            entity: sensor.strompreis_aktuell_pro_wh
-            name: Preis Pro kWh
-            vertical: false
-            features_position: bottom
-          - type: tile
             entity: input_number.strompreis_pro_wh
             name: Preis Einstellen
             vertical: false
@@ -156,5 +151,10 @@ views:
           - type: tile
             entity: sensor.stromkosten_jahr_bis_heute
             name: Jahr bis heute
+            vertical: false
+            features_position: bottom
+          - type: tile
+            entity: sensor.stromkosten_pro_stunde
+            name: Aktuell pro Stunde
             vertical: false
             features_position: bottom

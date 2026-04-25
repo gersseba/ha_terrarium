@@ -16,6 +16,28 @@
           states('sensor.steckdose_sternies_rechts_leistung') | float(0)
         ) | round(2) }}
 
+    - name: Terrarium Temperatur Durchschnitt
+      unique_id: terrarium_temperatur_durchschnitt
+      unit_of_measurement: "°C"
+      device_class: temperature
+      state_class: measurement
+      state: >
+        {{ (
+          states('sensor.thermometer_vorne_temperatur') | float(0) +
+          states('sensor.thermometer_hinten_temperatur') | float(0)
+        ) / 2 | round(2) }}
+
+    - name: Terrarium Luftfeuchtigkeit Durchschnitt
+      unique_id: terrarium_luftfeuchtigkeit_durchschnitt
+      unit_of_measurement: "%"
+      device_class: humidity
+      state_class: measurement
+      state: >
+        {{ (
+          states('sensor.thermometer_vorne_luftfeuchtigkeit') | float(0) +
+          states('sensor.thermometer_hinten_luftfeuchtigkeit') | float(0)
+        ) / 2 | round(2) }}
+
     - name: Strompreis Aktuell Pro kWh
       unique_id: strompreis_aktuell_pro_wh
       unit_of_measurement: "EUR/kWh"
@@ -47,6 +69,15 @@
           states('sensor.gesamtenergie_jahr_bis_heute') | float(0) *
           (states('input_number.strompreis_pro_wh') | float(0) / 1000)
         ) | round(2) }}
+
+    - name: Stromkosten Pro Stunde
+      unique_id: stromkosten_pro_stunde
+      unit_of_measurement: "EUR/h"
+      state: >
+        {{ (
+          (states('sensor.gesamtleistung_terrarium_und_fruehbeete') | float(0) / 1000) *
+          states('input_number.strompreis_pro_wh') | float(0)
+        ) | round(3) }}
 
 - sensor:
     - name: Terrarium Zieltemperatur Aktuell
