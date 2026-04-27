@@ -9,30 +9,20 @@ views:
           - type: heading
             heading: Sensoren
             heading_style: title
-          - graph: line
-            type: sensor
-            entity: sensor.terrarium_temperatur_durchschnitt
-            detail: 2
+          - type: history-graph
+            entities:
+              - entity: sensor.terrarium_temperatur_durchschnitt
             hours_to_show: 12
-            limits:
-              min: 0
-              max: 50
             grid_options:
               columns: 18
-              rows: 2
-            name: Temperatur durchschnitt
-          - graph: line
-            type: sensor
-            entity: sensor.terrarium_luftfeuchtigkeit_durchschnitt
-            detail: 2
+              rows: 3
+          - type: history-graph
+            entities:
+              - entity: sensor.terrarium_luftfeuchtigkeit_durchschnitt
             hours_to_show: 12
-            limits:
-              min: 0
-              max: 100
             grid_options:
-              rows: 2
+              rows: 3
               columns: 18
-            name: Luftfeuchtigkeit durchschnitt
       - type: grid
         cards:
           - type: heading
@@ -82,30 +72,20 @@ views:
           - type: heading
             heading: Sensoren
             heading_style: title
-          - graph: line
-            type: sensor
-            entity: sensor.fruhbeet_krumel_temperatur
-            detail: 2
+          - type: history-graph
+            entities:
+              - entity: sensor.fruhbeet_krumel_temperatur
             hours_to_show: 12
-            limits:
-              min: 0
-              max: 50
             grid_options:
               columns: 18
-              rows: 2
-            name: Temperatur
-          - graph: line
-            type: sensor
-            entity: sensor.fruhbeet_krumel_luftfeuchtigkeit
-            detail: 2
+              rows: 3
+          - type: history-graph
+            entities:
+              - entity: sensor.fruhbeet_krumel_luftfeuchtigkeit
             hours_to_show: 12
-            limits:
-              min: 0
-              max: 100
             grid_options:
-              rows: 2
+              rows: 3
               columns: 18
-            name: Luftfeuchtigkeit
       - type: grid
         cards:
           - type: heading
@@ -168,30 +148,20 @@ views:
           - type: heading
             heading: Sensoren
             heading_style: title
-          - graph: line
-            type: sensor
-            entity: sensor.fruhbeet_sternies_temperatur
-            detail: 2
+          - type: history-graph
+            entities:
+              - entity: sensor.fruhbeet_sternies_temperatur
             hours_to_show: 12
-            limits:
-              min: 0
-              max: 50
             grid_options:
               columns: 18
-              rows: 2
-            name: Temperatur
-          - graph: line
-            type: sensor
-            entity: sensor.fruhbeet_sternies_luftfeuchtigkeit
-            detail: 2
+              rows: 3
+          - type: history-graph
+            entities:
+              - entity: sensor.fruhbeet_sternies_luftfeuchtigkeit
             hours_to_show: 12
-            limits:
-              min: 0
-              max: 100
             grid_options:
-              rows: 2
+              rows: 3
               columns: 18
-            name: Luftfeuchtigkeit
       - type: grid
         cards:
           - type: heading

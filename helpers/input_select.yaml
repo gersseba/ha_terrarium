@@ -53,6 +53,7 @@ fruehbeet_kruemel_steckdose_links_rolle:
   options:
     - Heizung
     - Lampen
+    - Ungenutzt
 
 fruehbeet_kruemel_steckdose_rechts_rolle:
   name: Frühbeet Krümel Steckdose rechts Rolle
@@ -60,6 +61,7 @@ fruehbeet_kruemel_steckdose_rechts_rolle:
   options:
     - Heizung
     - Lampen
+    - Ungenutzt
 
 fruehbeet_sternies_steckdose_links_rolle:
   name: Frühbeet Sternies Steckdose links Rolle
@@ -67,6 +69,7 @@ fruehbeet_sternies_steckdose_links_rolle:
   options:
     - Heizung
     - Lampen
+    - Ungenutzt
 
 fruehbeet_sternies_steckdose_rechts_rolle:
   name: Frühbeet Sternies Steckdose rechts Rolle
@@ -74,3 +77,4 @@ fruehbeet_sternies_steckdose_rechts_rolle:
   options:
     - Heizung
     - Lampen
+    - Ungenutzt

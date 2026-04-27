@@ -39,6 +39,27 @@ views:
             name: Heizung
             vertical: false
             features_position: bottom
+          - type: heading
+            heading: Fehler je Steckdose
+            heading_style: subtitle
+          - type: tile
+            entity: binary_sensor.terrarium_lampen_vorne_geraete_fehler
+            name: Fehler Vorne
+            vertical: false
+            features_position: bottom
+            color: red
+          - type: tile
+            entity: binary_sensor.terrarium_lampen_hinten_geraete_fehler
+            name: Fehler Hinten
+            vertical: false
+            features_position: bottom
+            color: red
+          - type: tile
+            entity: binary_sensor.terrarium_heizung_geraete_fehler
+            name: Fehler Heizung
+            vertical: false
+            features_position: bottom
+            color: red
       - type: grid
         cards:
           - type: heading
@@ -155,6 +176,21 @@ views:
             name: Heizung
             vertical: false
             features_position: bottom
+          - type: heading
+            heading: Fehler je Steckdose
+            heading_style: subtitle
+          - type: tile
+            entity: binary_sensor.fruehbeet_kruemel_links_geraete_fehler
+            name: Fehler Links
+            vertical: false
+            features_position: bottom
+            color: red
+          - type: tile
+            entity: binary_sensor.fruehbeet_kruemel_rechts_geraete_fehler
+            name: Fehler Rechts
+            vertical: false
+            features_position: bottom
+            color: red
       - type: grid
         cards:
           - type: heading
@@ -271,6 +307,21 @@ views:
             name: Heizung
             vertical: false
             features_position: bottom
+          - type: heading
+            heading: Fehler je Steckdose
+            heading_style: subtitle
+          - type: tile
+            entity: binary_sensor.fruehbeet_sternies_links_geraete_fehler
+            name: Fehler Links
+            vertical: false
+            features_position: bottom
+            color: red
+          - type: tile
+            entity: binary_sensor.fruehbeet_sternies_rechts_geraete_fehler
+            name: Fehler Rechts
+            vertical: false
+            features_position: bottom
+            color: red
       - type: grid
         cards:
           - type: heading

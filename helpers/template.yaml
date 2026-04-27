@@ -442,3 +442,84 @@
           (is_state('input_select.fruehbeet_sternies_steckdose_links_rolle', 'Heizung') and left | count > 0 and is_state(left[0], 'on')) or
           (is_state('input_select.fruehbeet_sternies_steckdose_rechts_rolle', 'Heizung') and right | count > 0 and is_state(right[0], 'on'))
         }}
+
+    # --- Gerätefehler: Steckdose an aber Leistung = 0 ---
+
+    - name: Terrarium Lampen Vorne Geraete Fehler
+      unique_id: terrarium_lampen_vorne_geraete_fehler
+      device_class: problem
+      state: >
+        {% set sw = device_entities('a41c61defbb6da53874646bd2677c75d') | select('match', '^switch\\.') | list %}
+        {{ sw | count > 0 and is_state(sw[0], 'on') and states('sensor.terrarium_lampen_vorne_leistung') | float(-1) == 0 }}
+
+    - name: Terrarium Lampen Hinten Geraete Fehler
+      unique_id: terrarium_lampen_hinten_geraete_fehler
+      device_class: problem
+      state: >
+        {% set sw = device_entities('24cc22083ab3a8b64494ad3f1dd7e3b9') | select('match', '^switch\\.') | list %}
+        {{ sw | count > 0 and is_state(sw[0], 'on') and states('sensor.terrarium_lampen_hinten_leistung') | float(-1) == 0 }}
+
+    - name: Terrarium Heizung Geraete Fehler
+      unique_id: terrarium_heizung_geraete_fehler
+      device_class: problem
+      state: >
+        {% set sw = device_entities('7f7f621198bb172387384b3554263c74') | select('match', '^switch\\.') | list %}
+        {{ sw | count > 0 and is_state(sw[0], 'on') and states('sensor.terrarium_heizung_leistung') | float(-1) == 0 }}
+
+    - name: Fruehbeet Kruemel Links Geraete Fehler
+      unique_id: fruehbeet_kruemel_links_geraete_fehler
+      device_class: problem
+      state: >
+        {% set sw = device_entities('88dde9fbd2e4b8ef4b0ea7bfd470ff55') | select('match', '^switch\\.') | list %}
+        {{ sw | count > 0 and is_state(sw[0], 'on') and states('sensor.steckdose_krumel_links_leistung') | float(-1) == 0 }}
+
+    - name: Fruehbeet Kruemel Rechts Geraete Fehler
+      unique_id: fruehbeet_kruemel_rechts_geraete_fehler
+      device_class: problem
+      state: >
+        {% set sw = device_entities('3ea6cd86c82538fda1eed9c8fd683479') | select('match', '^switch\\.') | list %}
+        {{ sw | count > 0 and is_state(sw[0], 'on') and states('sensor.steckdose_krumel_rechts_leistung') | float(-1) == 0 }}
+
+    - name: Fruehbeet Sternies Links Geraete Fehler
+      unique_id: fruehbeet_sternies_links_geraete_fehler
+      device_class: problem
+      state: >
+        {% set sw = device_entities('743afcb166f842ac755892a6682ded5a') | select('match', '^switch\\.') | list %}
+        {{ sw | count > 0 and is_state(sw[0], 'on') and states('sensor.sternies_steckdose_links_leistung') | float(-1) == 0 }}
+
+    - name: Fruehbeet Sternies Rechts Geraete Fehler
+      unique_id: fruehbeet_sternies_rechts_geraete_fehler
+      device_class: problem
+      state: >
+        {% set sw = device_entities('96ff19fd86ae55844045f95f401ba895') | select('match', '^switch\\.') | list %}
+        {{ sw | count > 0 and is_state(sw[0], 'on') and states('sensor.steckdose_sternies_rechts_leistung') | float(-1) == 0 }}
+
+    # --- Gerätefehler Aggregate pro Bereich ---
+
+    - name: Terrarium Geraete Fehler
+      unique_id: terrarium_geraete_fehler
+      device_class: problem
+      state: >
+        {{
+          is_state('binary_sensor.terrarium_lampen_vorne_geraete_fehler', 'on') or
+          is_state('binary_sensor.terrarium_lampen_hinten_geraete_fehler', 'on') or
+          is_state('binary_sensor.terrarium_heizung_geraete_fehler', 'on')
+        }}
+
+    - name: Fruehbeet Kruemel Geraete Fehler
+      unique_id: fruehbeet_kruemel_geraete_fehler
+      device_class: problem
+      state: >
+        {{
+          is_state('binary_sensor.fruehbeet_kruemel_links_geraete_fehler', 'on') or
+          is_state('binary_sensor.fruehbeet_kruemel_rechts_geraete_fehler', 'on')
+        }}
+
+    - name: Fruehbeet Sternies Geraete Fehler
+      unique_id: fruehbeet_sternies_geraete_fehler
+      device_class: problem
+      state: >
+        {{
+          is_state('binary_sensor.fruehbeet_sternies_links_geraete_fehler', 'on') or
+          is_state('binary_sensor.fruehbeet_sternies_rechts_geraete_fehler', 'on')
+        }}

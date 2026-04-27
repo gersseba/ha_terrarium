@@ -646,3 +646,92 @@
                   target:
                     device_id: 96ff19fd86ae55844045f95f401ba895
   mode: single
+- alias: "Terrarium Geraete Fehler Pruefung"
+  id: terrarium_geraete_fehler_pruefung
+  trigger:
+    - platform: time_pattern
+      minutes: "/10"
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.terrarium_lampen_vorne_geraete_fehler
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.terrarium_lampen_hinten_geraete_fehler
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.terrarium_heizung_geraete_fehler
+          state: "on"
+  action:
+    - action: persistent_notification.create
+      data:
+        title: "⚠️ Terrarium Gerät defekt?"
+        message: >
+          Folgende Steckdosen sind eingeschaltet aber verbrauchen keinen Strom:
+          {% if is_state('binary_sensor.terrarium_lampen_vorne_geraete_fehler', 'on') %}
+          - Lampen Vorne
+          {% endif %}
+          {% if is_state('binary_sensor.terrarium_lampen_hinten_geraete_fehler', 'on') %}
+          - Lampen Hinten
+          {% endif %}
+          {% if is_state('binary_sensor.terrarium_heizung_geraete_fehler', 'on') %}
+          - Heizung
+          {% endif %}
+        notification_id: terrarium_geraete_fehler
+
+- alias: "Fruehbeet Kruemel Geraete Fehler Pruefung"
+  id: fruehbeet_kruemel_geraete_fehler_pruefung
+  trigger:
+    - platform: time_pattern
+      minutes: "/10"
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.fruehbeet_kruemel_links_geraete_fehler
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.fruehbeet_kruemel_rechts_geraete_fehler
+          state: "on"
+  action:
+    - action: persistent_notification.create
+      data:
+        title: "⚠️ Frühbeet Krümel Gerät defekt?"
+        message: >
+          Folgende Steckdosen sind eingeschaltet aber verbrauchen keinen Strom:
+          {% if is_state('binary_sensor.fruehbeet_kruemel_links_geraete_fehler', 'on') %}
+          - Links
+          {% endif %}
+          {% if is_state('binary_sensor.fruehbeet_kruemel_rechts_geraete_fehler', 'on') %}
+          - Rechts
+          {% endif %}
+        notification_id: fruehbeet_kruemel_geraete_fehler
+
+- alias: "Fruehbeet Sternies Geraete Fehler Pruefung"
+  id: fruehbeet_sternies_geraete_fehler_pruefung
+  trigger:
+    - platform: time_pattern
+      minutes: "/10"
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.fruehbeet_sternies_links_geraete_fehler
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.fruehbeet_sternies_rechts_geraete_fehler
+          state: "on"
+  action:
+    - action: persistent_notification.create
+      data:
+        title: "⚠️ Frühbeet Sternies Gerät defekt?"
+        message: >
+          Folgende Steckdosen sind eingeschaltet aber verbrauchen keinen Strom:
+          {% if is_state('binary_sensor.fruehbeet_sternies_links_geraete_fehler', 'on') %}
+          - Links
+          {% endif %}
+          {% if is_state('binary_sensor.fruehbeet_sternies_rechts_geraete_fehler', 'on') %}
+          - Rechts
+          {% endif %}
+        notification_id: fruehbeet_sternies_geraete_fehler
