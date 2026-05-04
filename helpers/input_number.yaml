@@ -9,7 +9,6 @@ terrarium_heizung_zieltemperatur_morgens:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 24
 
 terrarium_heizung_zieltemperatur_mittags:
   name: Terrarium Heizung Zieltemperatur Mittags
@@ -18,7 +17,6 @@ terrarium_heizung_zieltemperatur_mittags:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 30
 
 terrarium_heizung_zieltemperatur_abends:
   name: Terrarium Heizung Zieltemperatur Abends
@@ -27,7 +25,6 @@ terrarium_heizung_zieltemperatur_abends:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 24
 
 terrarium_heizung_zieltemperatur_nachts:
   name: Terrarium Heizung Zieltemperatur Nachts
@@ -36,7 +33,6 @@ terrarium_heizung_zieltemperatur_nachts:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 20
 
 
 ########################################
@@ -50,7 +46,6 @@ fruehbeet_sternies_heizung_zieltemperatur_morgens:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 24
 
 fruehbeet_sternies_heizung_zieltemperatur_mittags:
   name: Fruehbeet Sternies Heizung Zieltemperatur Mittags
@@ -59,7 +54,6 @@ fruehbeet_sternies_heizung_zieltemperatur_mittags:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 30
 
 fruehbeet_sternies_heizung_zieltemperatur_abends:
   name: Fruehbeet Sternies Heizung Zieltemperatur Abends
@@ -68,7 +62,6 @@ fruehbeet_sternies_heizung_zieltemperatur_abends:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 24
 
 fruehbeet_sternies_heizung_zieltemperatur_nachts:
   name: Fruehbeet Sternies Heizung Zieltemperatur Nachts
@@ -77,7 +70,6 @@ fruehbeet_sternies_heizung_zieltemperatur_nachts:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 20
 
 
 ########################################
@@ -91,7 +83,6 @@ fruehbeet_kruemel_heizung_zieltemperatur_morgens:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 24
 
 fruehbeet_kruemel_heizung_zieltemperatur_mittags:
   name: Fruehbeet Kruemel Heizung Zieltemperatur Mittags
@@ -100,7 +91,6 @@ fruehbeet_kruemel_heizung_zieltemperatur_mittags:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 30
 
 fruehbeet_kruemel_heizung_zieltemperatur_abends:
   name: Fruehbeet Kruemel Heizung Zieltemperatur Abends
@@ -109,7 +99,6 @@ fruehbeet_kruemel_heizung_zieltemperatur_abends:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 24
 
 fruehbeet_kruemel_heizung_zieltemperatur_nachts:
   name: Fruehbeet Kruemel Heizung Zieltemperatur Nachts
@@ -118,7 +107,6 @@ fruehbeet_kruemel_heizung_zieltemperatur_nachts:
   step: 0.5
   mode: box
   unit_of_measurement: "°C"
-  initial: 20
 
 
 ########################################
@@ -132,7 +120,6 @@ terrarium_heizung_hysterese:
   step: 0.1
   mode: box
   unit_of_measurement: "°C"
-  initial: 0.5
 
 fruehbeet_kruemel_heizung_hysterese:
   name: Fruehbeet Kruemel Heizung Hysterese
@@ -141,7 +128,6 @@ fruehbeet_kruemel_heizung_hysterese:
   step: 0.1
   mode: box
   unit_of_measurement: "°C"
-  initial: 0.5
 
 fruehbeet_sternies_heizung_hysterese:
   name: Fruehbeet Sternies Heizung Hysterese
@@ -150,7 +136,6 @@ fruehbeet_sternies_heizung_hysterese:
   step: 0.1
   mode: box
   unit_of_measurement: "°C"
-  initial: 0.5
 
 
 ########################################
@@ -164,4 +149,3 @@ strompreis_pro_wh:
   step: 0.01
   mode: box
   unit_of_measurement: "EUR/kWh"
-  initial: 0.30

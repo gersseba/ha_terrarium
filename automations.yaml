@@ -2,14 +2,19 @@
   alias: Terrarium Heizung Auto Regelung
   description: Heizung im Auto-Modus mit Hysterese um Zieltemperatur steuern.
   trigger:
-    - platform: homeassistant
-      event: start
     - platform: time_pattern
       minutes: "/1"
   condition:
     - condition: state
       entity_id: input_select.terrarium_heizung_modus
       state: Auto
+    - condition: template
+      value_template: >
+        {{
+          states('sensor.terrarium_temperatur_durchschnitt') not in ['unknown', 'unavailable', 'none', ''] and
+          states('sensor.terrarium_zieltemperatur_aktuell') not in ['unknown', 'unavailable', 'none', ''] and
+          states('input_number.terrarium_heizung_hysterese') not in ['unknown', 'unavailable', 'none', '']
+        }}
   action:
     - variables:
         current_temp: "{{ states('sensor.terrarium_temperatur_durchschnitt') | float(0) }}"
@@ -36,8 +41,6 @@
   alias: Fruehbeet Kruemel Heizung Auto Regelung
   description: Im Auto-Modus alle als Heizung zugewiesenen Steckdosen per Hysterese steuern.
   trigger:
-    - platform: homeassistant
-      event: start
     - platform: time_pattern
       minutes: "/1"
     - platform: state
@@ -48,6 +51,13 @@
     - condition: state
       entity_id: input_select.fruehbeet_kruemel_heizung
       state: Auto
+    - condition: template
+      value_template: >
+        {{
+          states('sensor.fruhbeet_krumel_temperatur') not in ['unknown', 'unavailable', 'none', ''] and
+          states('sensor.fruehbeet_kruemel_zieltemperatur_aktuell') not in ['unknown', 'unavailable', 'none', ''] and
+          states('input_number.fruehbeet_kruemel_heizung_hysterese') not in ['unknown', 'unavailable', 'none', '']
+        }}
   action:
     - variables:
         current_temp: "{{ states('sensor.fruhbeet_krumel_temperatur') | float(0) }}"
@@ -104,8 +114,6 @@
   alias: Fruehbeet Sternies Heizung Auto Regelung
   description: Im Auto-Modus alle als Heizung zugewiesenen Steckdosen per Hysterese steuern.
   trigger:
-    - platform: homeassistant
-      event: start
     - platform: time_pattern
       minutes: "/1"
     - platform: state
@@ -116,6 +124,13 @@
     - condition: state
       entity_id: input_select.fruehbeet_sternies_heizung
       state: Auto
+    - condition: template
+      value_template: >
+        {{
+          states('sensor.fruhbeet_sternies_temperatur') not in ['unknown', 'unavailable', 'none', ''] and
+          states('sensor.fruehbeet_sternies_zieltemperatur_aktuell') not in ['unknown', 'unavailable', 'none', ''] and
+          states('input_number.fruehbeet_sternies_heizung_hysterese') not in ['unknown', 'unavailable', 'none', '']
+        }}
   action:
     - variables:
         current_temp: "{{ states('sensor.fruhbeet_sternies_temperatur') | float(0) }}"
@@ -172,14 +187,18 @@
   alias: Terrarium Lampen Auto Zeiten
   description: Lampen nach Start-/Endzeit im Auto-Modus steuern.
   trigger:
-    - platform: homeassistant
-      event: start
     - platform: time_pattern
       minutes: "/1"
   condition:
     - condition: state
       entity_id: input_select.terrarium_lampen_modus
       state: Auto
+    - condition: template
+      value_template: >
+        {{
+          states('input_datetime.terrarium_lampen_start') not in ['unknown', 'unavailable', 'none', ''] and
+          states('input_datetime.terrarium_lampen_ende') not in ['unknown', 'unavailable', 'none', '']
+        }}
   action:
     - choose:
         - conditions:
@@ -214,8 +233,6 @@
   alias: Fruehbeet Kruemel Lampen Auto Zeiten
   description: Im Auto-Modus alle als Lampen zugewiesenen Steckdosen nach Zeit steuern.
   trigger:
-    - platform: homeassistant
-      event: start
     - platform: time_pattern
       minutes: "/1"
     - platform: state
@@ -226,6 +243,12 @@
     - condition: state
       entity_id: input_select.fruehbeet_kruemel_lampen
       state: Auto
+    - condition: template
+      value_template: >
+        {{
+          states('input_datetime.fruehbeet_kruemel_lampen_start') not in ['unknown', 'unavailable', 'none', ''] and
+          states('input_datetime.fruehbeet_kruemel_lampen_ende') not in ['unknown', 'unavailable', 'none', '']
+        }}
   action:
     - choose:
         - conditions:
@@ -277,8 +300,6 @@
   alias: Fruehbeet Sternies Lampen Auto Zeiten
   description: Im Auto-Modus alle als Lampen zugewiesenen Steckdosen nach Zeit steuern.
   trigger:
-    - platform: homeassistant
-      event: start
     - platform: time_pattern
       minutes: "/1"
     - platform: state
@@ -289,6 +310,12 @@
     - condition: state
       entity_id: input_select.fruehbeet_sternies_lampen
       state: Auto
+    - condition: template
+      value_template: >
+        {{
+          states('input_datetime.fruehbeet_sternies_lampen_start') not in ['unknown', 'unavailable', 'none', ''] and
+          states('input_datetime.fruehbeet_sternies_lampen_ende') not in ['unknown', 'unavailable', 'none', '']
+        }}
   action:
     - choose:
         - conditions:
